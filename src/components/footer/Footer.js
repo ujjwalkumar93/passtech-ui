@@ -3,8 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-
-import Paper from '@material-ui/core/Paper';
 import { Box } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
@@ -33,12 +31,12 @@ class GuttersGrid extends React.Component {
 
     return (
         <Grid container style={{backgroundColor: '#009688', color: 'white'}} >
-        <Grid item xs={12} lg={4}  > 
-            <Box borderBottom={1} ml={4} mr={4} width={250}>
+        <Grid item xs={12} lg={4}> 
+            <Box borderBottom={1} ml={4} mr={4} mt={4} width={250} >
             <Typography align={"left"} ><b>Services</b></Typography>
             </Box>
-            <Box ml={4} align={"center"}>
-              <Link href="#">
+            <Box ml={4} align={"center"} mb={4} >
+              <Link href="#" >
                 <Typography align={"left"}>Sale Phone</Typography>
               </Link>
               <Link href="#">
@@ -49,11 +47,11 @@ class GuttersGrid extends React.Component {
               </Link>
             </Box>
         </Grid>
-        <Grid item xs={12} lg={4} >
-            <Box borderBottom={1} ml={4} width={250}>
+        <Grid item xs={12} lg={4}>
+            <Box borderBottom={1} ml={4} mt={4} width={250}>
               <Typography align={"left"}><b>Company</b></Typography>
             </Box>
-            <Box ml={4} align={"center"}>
+            <Box ml={4} align={"center"} mb={4}>
               <Link href="#">
                 <Typography align={"left"}>About Us</Typography>
               </Link>
@@ -66,10 +64,10 @@ class GuttersGrid extends React.Component {
             </Box>
         </Grid>
         <Grid item xs={12} lg={4}>
-            <Box borderBottom={1}  ml={4} width={250}>
+            <Box borderBottom={1}  ml={4} mt={4} width={250}>
               <Typography align={"left"}><b>More Info</b></Typography>
             </Box>
-            <Box ml={4} align={"center"}>
+            <Box ml={4} align={"center"} mb={4}>
               <Link href="#">
                 <Typography align={"left"}>Term & Conditions</Typography>
               </Link>
@@ -81,7 +79,6 @@ class GuttersGrid extends React.Component {
               </Link>
             </Box>
         </Grid>
-    
     </Grid>
     
     );

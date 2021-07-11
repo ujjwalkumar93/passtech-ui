@@ -1,35 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import 'antd/dist/antd.css';
-import './index.css';
-import { Carousel } from 'antd';
+// import React, { Component } from 'react';
+// import ReactDOM from 'react-dom';
+// import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+// import { Carousel } from 'react-responsive-carousel';
 
-function onChange(a, b, c) {
-  console.log(a, b, c);
-}
+// class DemoCarousel extends Component {
+//     render() {
+//         return (
+//             <Carousel>
+//                 <div>
+//                     <img src="assets/1.jpeg" />
+//                     <p className="legend">Legend 1</p>
+//                 </div>
+//                 <div>
+//                     <img src="assets/2.jpeg" />
+//                     <p className="legend">Legend 2</p>
+//                 </div>
+//                 <div>
+//                     <img src="assets/3.jpeg" />
+//                     <p className="legend">Legend 3</p>
+//                 </div>
+//             </Carousel>
+//         );
+//     }
+// });
 
-const contentStyle = {
-  height: '160px',
-  color: '#fff',
-  lineHeight: '160px',
-  textAlign: 'center',
-  background: '#364d79',
-};
-
-ReactDOM.render(
-  <Carousel afterChange={onChange}>
-    <div>
-      <h3 style={contentStyle}>1</h3>
-    </div>
-    <div>
-      <h3 style={contentStyle}>2</h3>
-    </div>
-    <div>
-      <h3 style={contentStyle}>3</h3>
-    </div>
-    <div>
-      <h3 style={contentStyle}>4</h3>
-    </div>
-  </Carousel>,
-  document.getElementById('container'),
-);
+// ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));

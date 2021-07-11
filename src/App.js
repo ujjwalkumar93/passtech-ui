@@ -13,6 +13,7 @@ function App() {
    <div>
      <Header/>
      <p>test</p>
+     {/* <Carousel/> */}
       <Footer/>
    </div>
   ) 
