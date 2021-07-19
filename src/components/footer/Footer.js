@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import { Box } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
+
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -36,14 +37,14 @@ class GuttersGrid extends React.Component {
             <Typography align={"left"} ><b>Services</b></Typography>
             </Box>
             <Box ml={4} align={"center"} mb={4} >
-              <Link href="#" >
-                <Typography align={"left"}>Sale Phone</Typography>
+              <Link href="#" color="inherit">
+                <Typography style={{ fontSize: '14px',color:'white' }}  align={"left"} fontSize={"4px"}>Sale Phone</Typography>
               </Link>
-              <Link href="#">
-                <Typography align={"left"}>Buy Phone</Typography>
+              <Link href="#" color="inherit">
+                <Typography style={{ fontSize: '14px',color:'white' }} align={"left"}>Buy Phone</Typography>
               </Link>
-              <Link href="#">
-                <Typography align={"left"}>Become Partner</Typography>
+              <Link href="#" color="inherit">
+                <Typography style={{ fontSize: '14px',color:'white' }} align={"left"}>Become Partner</Typography>
               </Link>
             </Box>
         </Grid>
@@ -51,15 +52,15 @@ class GuttersGrid extends React.Component {
             <Box borderBottom={1} ml={4} mt={4} width={250}>
               <Typography align={"left"}><b>Company</b></Typography>
             </Box>
-            <Box ml={4} align={"center"} mb={4}>
-              <Link href="#">
-                <Typography align={"left"}>About Us</Typography>
+            <Box ml={4} style={{ fontSize: '14px',color:'white' }} align={"center"} mb={4}>
+              <Link href="#" color="inherit">
+                <Typography style={{ fontSize: '14px',color:'white' }} align={"left"}>About Us</Typography>
               </Link>
-              <Link href="#">
-                <Typography align={"left"}>Contact Us</Typography>
+              <Link href="#" color="inherit">
+                <Typography style={{ fontSize: '14px',color:'white' }} align={"left"}>Contact Us</Typography>
               </Link>
-              <Link href="#">
-                <Typography align={"left"}>Partner With Us</Typography>
+              <Link href="#" color="inherit">
+                <Typography style={{ fontSize: '14px',color:'white' }} align={"left"}>Partner With Us</Typography>
               </Link>
             </Box>
         </Grid>
@@ -68,14 +69,14 @@ class GuttersGrid extends React.Component {
               <Typography align={"left"}><b>More Info</b></Typography>
             </Box>
             <Box ml={4} align={"center"} mb={4}>
-              <Link href="#">
-                <Typography align={"left"}>Term & Conditions</Typography>
+              <Link href="#" color="inherit">
+                <Typography style={{ fontSize: '14px',color:'white' }} align={"left"}>Term & Conditions</Typography>
               </Link>
-              <Link href="#">
-                <Typography align={"left"}>Privacy Policy</Typography>
+              <Link href="#" color="inherit">
+                <Typography style={{ fontSize: '14px',color:'white' }} align={"left"}>Privacy Policy</Typography>
               </Link>
-              <Link href="#">
-                <Typography align={"left"}>E-Waste Policy</Typography>
+              <Link href="#" color="inherit">
+                <Typography style={{ fontSize: '14px',color:'white' }} align={"left"}>E-Waste Policy</Typography>
               </Link>
             </Box>
         </Grid>
