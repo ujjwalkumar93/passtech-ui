@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import { Box } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
+import FacebookIcon from '@material-ui/icons/Facebook';
 
 const styles = theme => ({
   root: {
@@ -32,7 +33,7 @@ class GuttersGrid extends React.Component {
 
     return (
         <Grid container style={{backgroundColor: '#009688', color: 'white'}} >
-        <Grid item xs={12} lg={4}> 
+        <Grid item xs={12} lg={3}> 
             <Box borderBottom={1} ml={4} mr={4} mt={4} width={250} >
             <Typography align={"left"} ><b>Services</b></Typography>
             </Box>
@@ -48,7 +49,7 @@ class GuttersGrid extends React.Component {
               </Link>
             </Box>
         </Grid>
-        <Grid item xs={12} lg={4}>
+        <Grid item xs={12} lg={3}>
             <Box borderBottom={1} ml={4} mt={4} width={250}>
               <Typography align={"left"}><b>Company</b></Typography>
             </Box>
@@ -64,11 +65,28 @@ class GuttersGrid extends React.Component {
               </Link>
             </Box>
         </Grid>
-        <Grid item xs={12} lg={4}>
+        <Grid item xs={12} lg={3}>
             <Box borderBottom={1}  ml={4} mt={4} width={250}>
               <Typography align={"left"}><b>More Info</b></Typography>
             </Box>
             <Box ml={4} align={"center"} mb={4}>
+              <Link href="#" color="inherit">
+                <Typography style={{ fontSize: '14px',color:'white' }} align={"left"}>Term & Conditions</Typography>
+              </Link>
+              <Link href="#" color="inherit">
+                <Typography style={{ fontSize: '14px',color:'white' }} align={"left"}>Privacy Policy</Typography>
+              </Link>
+              <Link href="#" color="inherit">
+                <Typography style={{ fontSize: '14px',color:'white' }} align={"left"}>E-Waste Policy</Typography>
+              </Link>
+            </Box>
+        </Grid>
+        <Grid item xs={12} lg={3}>
+            <Box borderBottom={1}  ml={4} mt={4} width={250}>
+              <Typography align={"left"}><b>Follow Us</b></Typography>
+            </Box>
+            <Box ml={4} align={"center"} mb={4}>
+            <FacebookIcon/>
               <Link href="#" color="inherit">
                 <Typography style={{ fontSize: '14px',color:'white' }} align={"left"}>Term & Conditions</Typography>
               </Link>

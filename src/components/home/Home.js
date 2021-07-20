@@ -12,7 +12,9 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
+// import WbIncandescentIcon from '@material-ui/icons/WbIncandescent';
 //import { makeStyles } from '@material-ui/core/styles';
+import FlareIcon from '@material-ui/icons/Flare';
 
 const useStyles = makeStyles({
     root: {
@@ -39,6 +41,32 @@ export default function Home(){
         {path: "https://rukminim1.flixcart.com/image/416/416/kcuug7k0/mobile/g/h/e/asus-rog-phone-3-zs661ks-6a006in-original-imaftwc6nmyuyekd.jpeg?q=70", key:'3',title:"Get Paid",content:"Lizards are a widespread group of squamate reptiles, with over 6,000 species, rangingacross all continents except Antarctica"},
     ]
     var value_list = ['Maximum Value','Safe & Hassle-free','Free Doorstep Pickup']
+    var why_us_list = [
+        {
+            title: "One-stop Solution",
+            description: "Sell, buy, repair or accessorize your smartphone",
+        },
+        {
+            title: "One-stop Solution",
+            description: "Sell, buy, repair or accessorize your smartphone",
+        },
+        {
+            title: "One-stop Solution",
+            description: "Sell, buy, repair or accessorize your smartphone",
+        },
+        {
+            title: "One-stop Solution",
+            description: "Sell, buy, repair or accessorize your smartphone",
+        },
+        {
+            title: "One-stop Solution",
+            description: "Sell, buy, repair or accessorize your smartphone",
+        },
+        {
+            title: "One-stop Solution",
+            description: "Sell, buy, repair or accessorize your smartphone",
+        }
+]
     return(
         <Box color="text.primary"  margin={8}  p={1} alignItems={"center"} alignContent={"center"} boxShadow={1} paddingY={2}>
          <Typography variant={"h5"}  align={"center"}>Sell your Mobile Phone for instant cash</Typography>
@@ -98,11 +126,43 @@ export default function Home(){
                             )
                     }) }
                 </Box>
-                <Box display="flex" justifyContent="center" marginY={2} flexWrap="wrap">
-                    <Box><p>test</p></Box>
-                    <Box><p>test</p></Box>
-                    <Box><p>test</p></Box>
+                <Box  bgcolor={"#eceff1"}>
+                    <Box borderLeft={5} borderColor={'red'} px={2} paddingY={2}>
+                        <Typography variant='h4'><b>Why Us</b></Typography>
+                    </Box>
+                    <Box display="flex" justifyContent="center" marginY={2} flexWrap="wrap">
+                         <Box display="flex" flexWrap="wrap">
+                            {why_us_list.map(card => {
+                                    return(
+                                        <Box p={2}>
+                                            <Card className={classes.root}>
+                                                <FlareIcon style={{ color: 'red' }} fontSize="large"/>
+                                                <CardContent>
+                                                    <Typography gutterBottom variant="h5" component="h2">
+                                                        {card.title}
+                                                    </Typography>
+                                                    <Typography variant="body2" color="textSecondary" component="p">
+                                                        {card.description}
+                                                    </Typography>
+                                                </CardContent>
+                                            </Card>
+                                        </Box>
+                                    )
+                            }) }
+                        </Box>
+                    </Box>
                 </Box>
+                <Box >
+                    <Box borderLeft={5} borderColor={'red'} px={2} paddingY={2}>
+                        <Typography variant='h4'><b>Our Partners</b></Typography>
+                    </Box>
+                    <Box display="flex" marginY={2} flexWrap="wrap" marginX={2}>
+                        <Card >
+                            <img height={200} width={200} src={"https://s3n.cashify.in/brandlogo/Amazon.png"}/>
+                        </Card>
+                    </Box>
+                </Box>
+
             </Box>
         </Box>
         
