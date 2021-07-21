@@ -7,6 +7,8 @@ import { Box } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import FacebookIcon from '@material-ui/icons/Facebook';
+import Twitter from '@material-ui/icons/Twitter';
+import Instagram from '@material-ui/icons/Instagram';
 
 const styles = theme => ({
   root: {
@@ -54,7 +56,7 @@ class GuttersGrid extends React.Component {
               <Typography align={"left"}><b>Company</b></Typography>
             </Box>
             <Box ml={4} style={{ fontSize: '14px',color:'white' }} align={"center"} mb={4}>
-              <Link href="#" color="inherit">
+              <Link href="/about_us" color="inherit">
                 <Typography style={{ fontSize: '14px',color:'white' }} align={"left"}>About Us</Typography>
               </Link>
               <Link href="#" color="inherit">
@@ -85,16 +87,22 @@ class GuttersGrid extends React.Component {
             <Box borderBottom={1}  ml={4} mt={4} width={250}>
               <Typography align={"left"}><b>Follow Us</b></Typography>
             </Box>
-            <Box ml={4} align={"center"} mb={4}>
-            <FacebookIcon/>
-              <Link href="#" color="inherit">
-                <Typography style={{ fontSize: '14px',color:'white' }} align={"left"}>Term & Conditions</Typography>
+            <Box ml={4} display="flex">
+              <FacebookIcon/>
+              <Link href="https://www.facebook.com/passtech.industrial.1" color="inherit">
+                <Typography style={{ fontSize: '14px',color:'white' }} align={"left"}>facebook/passtech</Typography>
               </Link>
+            </Box>
+            <Box ml={4} display="flex">
+              <Instagram/>
               <Link href="#" color="inherit">
-                <Typography style={{ fontSize: '14px',color:'white' }} align={"left"}>Privacy Policy</Typography>
+                <Typography style={{ fontSize: '14px',color:'white' }} align={"left"}>instagram/passtech</Typography>
               </Link>
+            </Box>
+            <Box ml={4} display="flex">
+              <Twitter/>
               <Link href="#" color="inherit">
-                <Typography style={{ fontSize: '14px',color:'white' }} align={"left"}>E-Waste Policy</Typography>
+                <Typography style={{ fontSize: '14px',color:'white' }} align={"left"}>twitter/passtech</Typography>
               </Link>
             </Box>
         </Grid>
@@ -103,7 +111,6 @@ class GuttersGrid extends React.Component {
     );
   }
 }
-
 GuttersGrid.propTypes = {
   classes: PropTypes.object.isRequired,
 };

@@ -15,7 +15,7 @@ export default function carousel() {
                 showStatus={0}
                 >
                     <div className="container">
-                        <img src="https://www.nicepng.com/png/full/3-34204_photoshop-light-effect-png-transparent-image-cobalt-blue.png"
+                        <img src="https://gotnda.com/wp-content/uploads/2020/05/computers-tablets-copy-450x140.jpg"
                         style={{
                             height:"450px",
                             minHeight:"150px"
@@ -34,7 +34,7 @@ export default function carousel() {
                         
                     </div>
                     <div>
-                        <img src="https://www.jameskoussertari.co.uk/wp-content/uploads/2015/11/scratch-slider1.png" 
+                        <img src="https://cdni.iconscout.com/illustration/premium/thumb/tailor-holding-a-mobile-phone-in-hand-for-advertisement-2705183-2259519.png" 
                         style={{
                             height:"450px",
                             minHeight:"150px"

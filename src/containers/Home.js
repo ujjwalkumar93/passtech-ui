@@ -1,20 +1,17 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import Hidden from '@material-ui/core/Hidden';
-import Searchbox from '../header/Searchbox.js';
-import Paper from '@material-ui/core/Paper';
+import Searchbox from '../components/header/Searchbox.js';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
 // import WbIncandescentIcon from '@material-ui/icons/WbIncandescent';
 //import { makeStyles } from '@material-ui/core/styles';
 import FlareIcon from '@material-ui/icons/Flare';
+import Carousel from '../components/carousel/Carousel.js'
 
 const useStyles = makeStyles({
     root: {
@@ -68,7 +65,9 @@ export default function Home(){
         }
 ]
     return(
-        <Box color="text.primary"  margin={8}  p={1} alignItems={"center"} alignContent={"center"} boxShadow={1} paddingY={2}>
+        <Box>
+            <Carousel/>
+            <Box color="text.primary"  margin={8}  p={1} alignItems={"center"} alignContent={"center"} boxShadow={1} paddingY={2}>
          <Typography variant={"h5"}  align={"center"}>Sell your Mobile Phone for instant cash</Typography>
          <Box display="flex" justifyContent="center" marginY={2} flexWrap="wrap">
              <Hidden only="xs">
@@ -166,6 +165,7 @@ export default function Home(){
             </Box>
         </Box>
         
+        </Box>
         
     )
 }
