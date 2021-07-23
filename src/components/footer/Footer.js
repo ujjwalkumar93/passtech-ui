@@ -72,7 +72,7 @@ class GuttersGrid extends React.Component {
               <Typography align={"left"}><b>More Info</b></Typography>
             </Box>
             <Box ml={4} align={"center"} mb={4}>
-              <Link href="#" color="inherit">
+              <Link href="term_and_condition" color="inherit">
                 <Typography style={{ fontSize: '14px',color:'white' }} align={"left"}>Term & Conditions</Typography>
               </Link>
               <Link href="#" color="inherit">
