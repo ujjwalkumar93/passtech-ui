@@ -59,7 +59,7 @@ class GuttersGrid extends React.Component {
               <Link href="/about_us" color="inherit">
                 <Typography style={{ fontSize: '14px',color:'white' }} align={"left"}>About Us</Typography>
               </Link>
-              <Link href="#" color="inherit">
+              <Link href="/contact_us" color="inherit">
                 <Typography style={{ fontSize: '14px',color:'white' }} align={"left"}>Contact Us</Typography>
               </Link>
               <Link href="#" color="inherit">

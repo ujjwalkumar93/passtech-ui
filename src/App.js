@@ -5,6 +5,7 @@ import Footer from './components/footer/Footer.js'
 import Carousel from './components/carousel/Carousel.js'
 import Home from './containers/Home.js'
 import AboutUs from './containers/AboutUs.js'
+import ContactUs from './containers/ContactUs.js'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 //import { ThemeProvider } from '@material-ui/core/styles';
 
@@ -15,6 +16,7 @@ function App() {
         <Header/>
           <Switch>
             <Route path='/about_us' component={AboutUs}/>
+            <Route path='/contact_us' component={ContactUs}/>
             <Route path = '/' component={Home}/>
           </Switch>
         <Footer/>
