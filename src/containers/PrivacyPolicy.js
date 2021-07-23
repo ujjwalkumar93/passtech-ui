@@ -1,13 +1,13 @@
 import React from 'react';
 import { Typography,Box } from '@material-ui/core';
 
-export default function TermAndCondition(){
+export default function PrivacyPolicy(){
     var deviceWidth = window.screen.width*.65
     console.log(deviceWidth)
     return(
         <Box height={`${window.screen.height}px`} display="flex" justifyContent="center">
             <Box width={`${deviceWidth}px`} marginTop={10} marginBottom={10} marginLeft={5} marginRight={5}> 
-                <Typography variant="h3" align="center">Term And Conditions</Typography>
+                <Typography variant="h3" align="center">Privacy Policy</Typography>
                 <Box marginTop={5}>
                     <Typography align="center">
                     Band is a multidisciplinary creative studio based in the Pacific Northwest.
