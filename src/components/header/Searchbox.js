@@ -44,6 +44,9 @@ export default function Searchbox() {
             onFocus={handleOnFocus}
             autoFocus
             formatResult={formatResult}
+            styling={{
+              borderRadius: "8px"
+            }}
           />
     </div>
   )

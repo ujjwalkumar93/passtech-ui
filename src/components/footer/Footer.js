@@ -1,3 +1,68 @@
+// import React from 'react';
+
+// import Box from '@material-ui/core/Box';
+
+// import { makeStyles } from '@material-ui/core/styles';
+
+// import Typography from '@material-ui/core/Typography';
+// import Link from '@material-ui/core/Link';
+// import FacebookIcon from '@material-ui/icons/Facebook';
+// import Twitter from '@material-ui/icons/Twitter';
+// import Instagram from '@material-ui/icons/Instagram';
+
+// const useStyles = makeStyles({
+//     root: {
+//       maxWidth: 345,
+//       minWidth: 150,
+//     },
+//     media: {
+//       height: 140,
+//     },
+//   });
+  
+// export default function Footer(){
+//   //const footer_item = [{name:"test"}]
+//   const footer_item = [
+//     {title:"Services",items:[{name:"Sale Phone",url:"#"},{name:"Buy Phone",url:"#"},{name:"Become Partner",url:"#"}]},
+//     {title:"Company",items:[{name:"About Us",url:"/about_us"},{name:"Contact Us",url:"/contact_us"},{name:"Partner With Us",url:"#"}]},
+//     {title:"More Info",items:[{name:"Term & Conditions",url:"term_and_condition"},{name:"Privacy Policy",url:"/privacy_policy"},{name:"E-Waste Policy",url:"#"}]},
+    
+//   ]
+//     return(
+//         <Box display="flex" flexWrap="wrap" justifyContent="center" marginLeft={8}>
+//             {
+//               footer_item.map(i => {
+//                 return(
+//                   <Box flex={1} justifyContent="center">
+//                     <Typography>{i.title}</Typography>
+//                     {i.items.map(itm=> {
+//                       return(
+//                         <Box>
+//                             {/* <Typography variant="h6">{itm.name}</Typography> */}
+//                             <Link href={itm.url} color="inherit">
+//                               <Typography style={{ fontSize: '14px',color:'grey' }} align={"left"}>{itm.name}</Typography>
+//                             </Link>
+//                         </Box>
+//                       )
+//                     })}
+//                   </Box>
+                  
+//                 )
+//               })
+//             }
+//             <Box flex={1} justifyContent="center">
+//               <Box>
+//                 <Link href='#' color="inherit">
+//                   <Typography style={{ fontSize: '14px',color:'grey' }} align={"left"}>Test</Typography>
+//                 </Link>
+//               </Box>
+//             </Box>
+//         </Box>
+        
+//     )
+// }
+
+
 
 import React from 'react';
 import PropTypes from 'prop-types';

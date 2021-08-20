@@ -12,6 +12,9 @@ import CardContent from '@material-ui/core/CardContent';
 //import { makeStyles } from '@material-ui/core/styles';
 import FlareIcon from '@material-ui/icons/Flare';
 import Carousel from '../components/carousel/Carousel.js'
+import Button from '@material-ui/core/Button';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
 
 const useStyles = makeStyles({
     root: {
@@ -95,7 +98,8 @@ export default function Home(){
                         )
                     })
                 }
-            </Box>
+                <Button style={{marginY:10,textTransform: 'capitalize'}}><b>More brands >></b></Button>
+            </Box>   
             <Box  px={5}>
                 <Box px={2} borderLeft={5} borderColor={'red'}>
                     <Typography variant="h4">
