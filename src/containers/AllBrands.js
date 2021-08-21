@@ -36,21 +36,21 @@ export default function AllBrands(){
     var deviceWidth = window.screen.width*.65
     console.log(deviceWidth)
     return(
-        <Box>
+        <Box display="flex" justifyContent="center" flexDirection="column">
             <Box marginLeft={5} marginTop={5} display="flex" justifyContent="center" my={4}>
                 <Typography variant="h5">Sell Old Mobile Phone</Typography>
             </Box>
             <Box display={"flex"} justifyContent="center">
                 <Searchbox/>
             </Box>
-            <Box marginLeft={5} marginTop={5}>
+            <Box marginLeft={"10%"} marginTop={5}>
                 <Typography variant="h6">Select Brand</Typography>
             </Box>
-            <Box display="flex" flexWrap="wrap" className={"classes.root"}>
+            <Box display="flex" flexWrap="wrap" className={"classes.root"} marginLeft="10%" marginRight="10%" marginTop={8}>
                 {
                     img_path.map(img => {
                         return(
-                            <Card>
+                            <Card margin={4}>
                                 <img key={img.key} src={img.path} />
                             </Card>
                         )
