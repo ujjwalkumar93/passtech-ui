@@ -8,6 +8,7 @@ const Example = (props) => {
   const variants = [{name:"4GB/64GB", color:"#ffa733"},{name:"6GB/128GB", color:"#8bc34a"}]
   return (
     <Container style={{height:window.screen.height}}>
+    <Box boxShadow={2}>
     <Row style={{marginTop:"12%"}}>
       <Col lg={4} xs={12}>
         <img src = "https://images-na.ssl-images-amazon.com/images/I/71-Su4Wr0HL._SY741_.jpg" style={{
@@ -44,6 +45,7 @@ const Example = (props) => {
       </Col>
       
     </Row>
+    </Box>
   </Container>
   );
 }

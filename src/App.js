@@ -12,13 +12,14 @@ import CheckCondition from './containers/CheckCondition'
 // import test from './containers/test.js'
 import TermAndCondition from './containers/TermAndCondition.js'
 import PrivacyPolicy from './containers/TermAndCondition.js'
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-
+import {BrowserRouter as Router, Route, Switch,useHistory,create} from 'react-router-dom'
+import { createBrowserHistory } from 'history';
 //import { ThemeProvider } from '@material-ui/core/styles';
 
+const history = createBrowserHistory();
 function App() {
   return(
-    <Router>
+    <Router history={history}>
       <div>
         <Header/>
           <Switch>

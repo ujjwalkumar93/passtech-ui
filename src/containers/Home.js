@@ -13,9 +13,7 @@ import CardContent from '@material-ui/core/CardContent';
 import FlareIcon from '@material-ui/icons/Flare';
 import Carousel from '../components/carousel/Carousel.js'
 import Button from '@material-ui/core/Button';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-
+import { useHistory } from "react-router-dom";
 const useStyles = makeStyles({
     root: {
       maxWidth: 345,
@@ -27,6 +25,7 @@ const useStyles = makeStyles({
   });
   
 export default function Home(){
+    let history = useHistory();
     //const classes = useStyles();
     const classes = useStyles();
     var img_path = [
@@ -98,7 +97,7 @@ export default function Home(){
                         )
                     })
                 }
-                <Button style={{marginY:10,textTransform: 'capitalize'}}><b>More brands >></b></Button>
+                <Button style={{marginY:10,textTransform: 'capitalize'}} onClick={()=> history.push('/all_brands') }><b>More brands >></b></Button>
             </Box>   
             <Box  px={5}>
                 <Box px={2} borderLeft={5} borderColor={'red'}>
