@@ -2,9 +2,6 @@ import React from 'react';
 import { Typography,Box } from '@material-ui/core';
 import Searchbox from '../components/header/Searchbox.js';
 import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import Grid from '@material-ui/core/Grid';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 
 var img_path = [

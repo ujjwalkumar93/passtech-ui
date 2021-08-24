@@ -2,14 +2,24 @@ import {React,useState} from 'react';
 import { Typography,Box,Grid,Checkbox,FormControlLabel, Button } from '@material-ui/core';
 // import { Button } from 'bootstrap';
 
-export default function CheckCondition(){
-    var queList = [{q:"Are you able to make and receive calls?",d:"Check your device for cellular network connectivity issues."},
-    {q:"Are you able to make and receive calls?",d:"Check your device for cellular network connectivity issues."},
-    {q:"Are you able to make and receive calls?",d:"Check your device for cellular network connectivity issues."},
-    {q:"Are you able to make and receive calls?",d:"Check your device for cellular network connectivity issues."},
-    {q:"Are you able to make and receive calls?",d:"Check your device for cellular network connectivity issues."},
+export default function CheckCondition(props){
+    var queList1 = [{q:"Are you able to make and receive calls?",d:"Check your device for cellular network connectivity issues.",is_checked:false},
+    {id:1,q:"Are you able to make and receive calls?",d:"Check your device for cellular network connectivity issues.",is_checked:false},
+    {id:2,q:"Are you able to make and receive calls?",d:"Check your device for cellular network connectivity issues.",is_checked:false},
+    {id:3,q:"Are you able to make and receive calls?",d:"Check your device for cellular network connectivity issues.",is_checked:false},
+    {id:4,q:"Are you able to make and receive calls?",d:"Check your device for cellular network connectivity issues.",is_checked:false},
     ]
     const [isChecked, setIsChecked] = useState(false);
+    let phone = props.location.state.phone
+    console.log(props.location.state.phone)
+    const[queList,setQueList] = useState(
+        [{q:"Are you able to make and receive calls?",d:"Check your device for cellular network connectivity issues.",is_checked:false},
+    {id:1,q:"Are you able to make and receive calls?",d:"Check your device for cellular network connectivity issues.",is_checked:false},
+    {id:2,q:"Are you able to make and receive calls?",d:"Check your device for cellular network connectivity issues.",is_checked:false},
+    {id:3,q:"Are you able to make and receive calls?",d:"Check your device for cellular network connectivity issues.",is_checked:false},
+    {id:4,q:"Are you able to make and receive calls?",d:"Check your device for cellular network connectivity issues.",is_checked:false},
+    ]
+    )
     return(
             <Grid container >
                 <Grid item lg={8} xs={12}>
@@ -20,6 +30,7 @@ export default function CheckCondition(){
                         </Box>
                         {
                             queList.map(que => {
+                                console.log(".....",que.id+"Y")
                                 return(
                                     <Box margin={3} boxShadow={2} padding={3}>
                                         <Typography variant="h5">{que.q}</Typography>
@@ -28,6 +39,7 @@ export default function CheckCondition(){
                                         <FormControlLabel
                                         control={
                                             <Checkbox
+                                                key={que.id+"Y"}
                                                 checked={isChecked}
                                                 onChange={(e) => {setIsChecked(!isChecked)}}
                                                 name="checkedA"
@@ -39,6 +51,7 @@ export default function CheckCondition(){
                                         <FormControlLabel
                                             control={
                                                 <Checkbox
+                                                    key={que.id+"N"}
                                                     checked={isChecked}
                                                     onChange={() => {setIsChecked(!isChecked)}}
                                                     name="checkedA"
@@ -65,7 +78,7 @@ export default function CheckCondition(){
                             height:"auto",
                             }}/>
                             <Box padding={3}>
-                            <Typography  variant="h6">Xiaomi Redmi Note 6 Pro</Typography>
+                            <Typography  variant="h6">{phone}</Typography>
                             <Typography color="secondary">4GB/64GB</Typography>
                             </Box>
                         </Box>

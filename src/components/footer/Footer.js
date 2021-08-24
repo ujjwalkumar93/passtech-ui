@@ -23,6 +23,14 @@ const styles = theme => ({
   },
 });
 
+const link_style = {
+  textDecoration: 'none',
+  '&:hover': {
+    color: 'white'
+  },
+};
+
+
 class GuttersGrid extends React.Component {
   state = {
     spacing: '16',
@@ -40,13 +48,13 @@ class GuttersGrid extends React.Component {
             <Typography align={"left"} variant="h5"><b>Services</b></Typography>
             </Box>
             <Box ml={4} align={"center"} mb={4} >
-              <Link href="#" color="inherit">
+              <Link href="#" color="inherit" underline={'none'} style={{backgroundColor:"red"}}>
                 <Typography style={{ fontSize: '22px',color:'white' }}  align={"left"} fontSize={"4px"}>Sale Phone</Typography>
               </Link>
-              <Link href="#" color="inherit">
+              <Link href="#" color="inherit" underline={'none'}>
                 <Typography style={{ fontSize: '22px',color:'white' }} align={"left"}>Buy Phone</Typography>
               </Link>
-              <Link href="#" color="inherit">
+              <Link href="#" color="inherit" underline={'none'}>
                 <Typography style={{ fontSize: '22px',color:'white' }} align={"left"}>Become Partner</Typography>
               </Link>
             </Box>
@@ -56,13 +64,13 @@ class GuttersGrid extends React.Component {
               <Typography align={"left"} variant="h5"><b>Company</b></Typography>
             </Box>
             <Box ml={4} style={{ fontSize: '22px',color:'white' }} align={"center"} mb={4}>
-              <Link href="/about_us" color="inherit">
+              <Link href="/about_us" color="inherit" underline={'none'}>
                 <Typography style={{ fontSize: '22px',color:'white' }} align={"left"}>About Us</Typography>
               </Link>
-              <Link href="/contact_us" color="inherit">
+              <Link href="/contact_us" color="inherit" underline={'none'}>
                 <Typography style={{ fontSize: '22px',color:'white' }} align={"left"}>Contact Us</Typography>
               </Link>
-              <Link href="#" color="inherit">
+              <Link href="#" color="inherit" underline={'none'}>
                 <Typography style={{ fontSize: '22px',color:'white' }} align={"left"}>Partner With Us</Typography>
               </Link>
             </Box>
@@ -72,14 +80,14 @@ class GuttersGrid extends React.Component {
               <Typography align={"left"} variant="h5" width="auto" ><b>More Info</b></Typography>
             </Box>
             <Box ml={4} align={"center"} mb={4}>
-              <Link href="term_and_condition" color="inherit">
+              <Link href="term_and_condition" color="inherit" underline={'none'}>
                 <Typography style={{ fontSize: '22px',color:'white' }} align={"left"}>Term & Conditions</Typography>
               </Link>
-              <Link href="/privacy_policy" color="inherit">
+              <Link href="/privacy_policy" color="inherit" underline={'none'}>
                 <Typography style={{ fontSize: '22px',color:'white' }} align={"left"}>Privacy Policy</Typography>
               </Link>
-              <Link href="#" color="inherit">
-                <Typography style={{ fontSize: '22px',color:'white' }} align={"left"}>E-Waste Policy</Typography>
+              <Link href="#" color="inherit" underline={'none'}>
+                <Typography style={link_style} align={"left"} variant="h6">E-Waste Policy</Typography>
               </Link>
             </Box>
         </Grid>
@@ -91,24 +99,24 @@ class GuttersGrid extends React.Component {
               <Box>
               <FacebookIcon/>
               </Box>
-              <Link href="https://www.facebook.com/passtech.industrial.1" color="inherit">
-                <Typography style={{ fontSize: '22px',color:'white' }} align={"left"}>facebook/passtech</Typography>
+              <Link href="https://www.facebook.com/passtech.industrial.1" color="inherit" underline={'none'}>
+                <Typography style={link_style} align={"left"} variant="h6">facebook/passtech</Typography>
               </Link>
             </Box>
             <Box ml={4} display="flex">
               <Box>
               <Instagram/>
               </Box>
-              <Link href="#" color="inherit">
-                <Typography style={{ fontSize: '22px',color:'white' }} align={"left"}>instagram/passtech</Typography>
+              <Link href="#" color="inherit" underline={'none'}>
+                <Typography style={link_style} align={"left"} variant="h6">instagram/passtech</Typography>
               </Link>
             </Box>
             <Box ml={4} display="flex">
               <Box>
               <Twitter/>
               </Box>
-              <Link href="#" color="inherit">
-                <Typography style={{ fontSize: '22px',color:'white' }} align={"left"}>twitter/passtech</Typography>
+              <Link href="#" color="inherit" underline={'none'}>
+                <Typography style={link_style} align={"left"} variant="h6">twitter/passtech</Typography>
               </Link>
             </Box>
         </Grid>
