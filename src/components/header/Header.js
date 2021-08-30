@@ -148,7 +148,7 @@ export default function PrimarySearchAppBar() {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static" style={{ background: '#009688' }}>
+      <AppBar position="static" style={{ background: '#f50057' }}>
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
             PassTech

@@ -2,7 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import Header from './components/header/Header.js'
 import Footer from './components/footer/Footer.js'
-import Carousel from './components/carousel/Carousel.js'
+// import Carousel from './components/signinsignup/Carousel.js'
+import Signin from './components/signinsignup/Signin.js'
 import Home from './containers/Home.js'
 import AllBrands from './containers/AllBrands.js'
 import AboutUs from './containers/AboutUs.js'
@@ -15,7 +16,7 @@ import PrivacyPolicy from './containers/TermAndCondition.js'
 import {BrowserRouter as Router, Route, Switch,useHistory,create} from 'react-router-dom'
 import { createBrowserHistory } from 'history';
 //import { ThemeProvider } from '@material-ui/core/styles';
-import SignupSignin from './containers/SignupSignin.js'
+
 import { useState } from 'react';
 
 const history = createBrowserHistory();
@@ -23,24 +24,19 @@ function App() {
   const[auth, setAuth] = useState(false)
   return(
     <Router history={history}>
-      {
-        auth ? (<div>
           <Header/>
             <Switch>
-            <Route path='/all_brands' component={AllBrands}/>
+              <Route path='/all_brands' component={AllBrands}/>
               <Route path='/about_us' component={AboutUs}/>
               <Route path='/contact_us' component={ContactUs}/>
               <Route path = '/term_and_condition' component={TermAndCondition}/>
               <Route path = '/privacy_policy' component={PrivacyPolicy}/>
-              <Route path = '/phone_info:phone' component={PhoneInfo}/>
+              <Route path = '/phone_info' component={PhoneInfo}/>
               <Route path = '/check_condition' component={CheckCondition}/>
-              <Route path = '/' component={Home}/>
+              <Route path = '/home' component={Home}/>
+              <Route path='/auth' component={Signin}/>
             </Switch>
           <Footer/>
-        </div>) : (
-          <Route path='/auth' component={SignupSignin}/>
-        )
-      }
     </Router>
 
   ) 

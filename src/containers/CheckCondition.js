@@ -1,25 +1,95 @@
-import {React,useState} from 'react';
-import { Typography,Box,Grid,Checkbox,FormControlLabel, Button } from '@material-ui/core';
+import {React,useState,useEffect} from 'react';
+import { Typography,Box,Grid,Checkbox,FormControlLabel,Button } from '@material-ui/core';
+// import Alert from '@material-ui/core/Alert';
 // import { Button } from 'bootstrap';
 
+
 export default function CheckCondition(props){
-    var queList1 = [{q:"Are you able to make and receive calls?",d:"Check your device for cellular network connectivity issues.",is_checked:false},
-    {id:1,q:"Are you able to make and receive calls?",d:"Check your device for cellular network connectivity issues.",is_checked:false},
-    {id:2,q:"Are you able to make and receive calls?",d:"Check your device for cellular network connectivity issues.",is_checked:false},
-    {id:3,q:"Are you able to make and receive calls?",d:"Check your device for cellular network connectivity issues.",is_checked:false},
-    {id:4,q:"Are you able to make and receive calls?",d:"Check your device for cellular network connectivity issues.",is_checked:false},
-    ]
-    const [isChecked, setIsChecked] = useState(false);
-    let phone = props.location.state.phone
-    console.log(props.location.state.phone)
     const[queList,setQueList] = useState(
-        [{q:"Are you able to make and receive calls?",d:"Check your device for cellular network connectivity issues.",is_checked:false},
-    {id:1,q:"Are you able to make and receive calls?",d:"Check your device for cellular network connectivity issues.",is_checked:false},
-    {id:2,q:"Are you able to make and receive calls?",d:"Check your device for cellular network connectivity issues.",is_checked:false},
-    {id:3,q:"Are you able to make and receive calls?",d:"Check your device for cellular network connectivity issues.",is_checked:false},
-    {id:4,q:"Are you able to make and receive calls?",d:"Check your device for cellular network connectivity issues.",is_checked:false},
-    ]
-    )
+        [
+            {
+                id:0,
+                q:"Are you able to make and receive calls?",
+                d:"Check your device for cellular network connectivity issues.",
+                y:false,
+                n:false,
+                yd:"Yes i am able to make and receive and make call",
+                nd:"No i am able to make and receive and make call"
+            },
+            {
+                id:1,
+                q:"Are you able to make and receive calls?",
+                d:"Check your device for cellular network connectivity issues.",
+                y:false,
+                n:false,
+                yd:"Yes i am able to make and receive and make call",
+                nd:"No i am able to make and receive and make call"
+            },
+            {
+                id:2,
+                q:"Are you able to make and receive calls?",
+                d:"Check your device for cellular network connectivity issues.",
+                y:false,
+                n:false,
+                yd:"Yes i am able to make and receive and make call",
+                nd:"No i am able to make and receive and make call"
+            },
+            {
+                id:3,
+                q:"Are you able to make and receive calls?",
+                d:"Check your device for cellular network connectivity issues.",
+                y:false,
+                n:false,
+                yd:"Yes i am able to make and receive and make call",
+                nd:"No i am able to make and receive and make call"
+            },
+            {
+                id:4,
+                q:"Are you able to make and receive calls?",
+                d:"Check your device for cellular network connectivity issues.",
+                y:false,
+                n:false,
+                yd:"Yes i am able to make and receive and make call",
+                nd:"No i am able to make and receive and make call"
+            },
+        ]
+)
+
+    const[ansList,setAnsLinst] =useState([])
+
+        const handleCheck = (e) => {
+            let objIndex = queList.findIndex((obj => obj.id == e.id));
+            
+            if(e.key === "y"){
+                if(!queList[objIndex].n){
+                    queList[objIndex].y = e.val
+                }
+                
+            }
+            if(e.key === "n"){
+                if(!queList[objIndex].y){
+                    queList[objIndex].n = e.val
+                }
+            }
+            setQueList([...queList])
+        }
+        useEffect(() => {
+            let a = []
+            queList.map(q => {
+                //console.log(">>>>>>>>>>>>>>>>>>>>>>>>>q is: ",q)
+                if(q.y){
+                    console.log(q.yd)
+                    a.push(q.yd)
+                }
+                if(q.n){
+                    console.log(q.nd)
+                    a.push(q.nd)
+                }
+
+            })
+            setAnsLinst([...a])
+
+        },[queList])
     return(
             <Grid container >
                 <Grid item lg={8} xs={12}>
@@ -30,7 +100,6 @@ export default function CheckCondition(props){
                         </Box>
                         {
                             queList.map(que => {
-                                console.log(".....",que.id+"Y")
                                 return(
                                     <Box margin={3} boxShadow={2} padding={3}>
                                         <Typography variant="h5">{que.q}</Typography>
@@ -40,10 +109,10 @@ export default function CheckCondition(props){
                                         control={
                                             <Checkbox
                                                 key={que.id+"Y"}
-                                                checked={isChecked}
-                                                onChange={(e) => {setIsChecked(!isChecked)}}
+                                                checked={que.y}
+                                                onChange={(e) =>  handleCheck({id:que.id,val:!que.y,key:"y"})}
                                                 name="checkedA"
-                                                color="primary"
+                                                color="secondary"
                                             />
                                             }
                                             label="Yes"
@@ -52,10 +121,10 @@ export default function CheckCondition(props){
                                             control={
                                                 <Checkbox
                                                     key={que.id+"N"}
-                                                    checked={isChecked}
-                                                    onChange={() => {setIsChecked(!isChecked)}}
-                                                    name="checkedA"
-                                                    color="primary"
+                                                    checked={que.n}
+                                                    onChange={(e) => handleCheck({id:que.id,val:!que.n,key:"n"})}
+                                                    name="checkedB"
+                                                    color="secondary"
                                                 />
                                                 }
                                                 label="No"
@@ -65,7 +134,16 @@ export default function CheckCondition(props){
                             })
                         }
                             <Box justifyContent="center" display="flex" marginBottom={12}>
-                                <Button variant="contained" size="large" color="secondary">Continue</Button>
+                                <Button 
+                                    variant="contained" 
+                                    size="large" 
+                                    color="secondary"
+                                    onChange={e => {
+                                        if(ansList.length != queList.length){
+                                            // <Alert severity="error">Please answer all question</Alert>
+                                        }
+                                    }}
+                                    >Continue</Button>
                             </Box>
                         </Box>
                     </Box>
@@ -78,7 +156,7 @@ export default function CheckCondition(props){
                             height:"auto",
                             }}/>
                             <Box padding={3}>
-                            <Typography  variant="h6">{phone}</Typography>
+                            <Typography  variant="h6">Redme</Typography>
                             <Typography color="secondary">4GB/64GB</Typography>
                             </Box>
                         </Box>
@@ -89,6 +167,13 @@ export default function CheckCondition(props){
                         </Box>
                         <Box marginTop={3}>
                         <Typography variant="h6" color="secondary">Device Details</Typography>
+                        {   
+                                ansList.map(ans => {
+                                    return(
+                                        <li style={{color:"green"}}>{ans}</li>
+                                    )
+                                })
+                        }
                         </Box>
                     </Box>
                 </Grid>
