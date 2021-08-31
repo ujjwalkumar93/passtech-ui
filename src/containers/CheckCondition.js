@@ -1,10 +1,19 @@
 import {React,useState,useEffect} from 'react';
 import { Typography,Box,Grid,Checkbox,FormControlLabel,Button } from '@material-ui/core';
-// import Alert from '@material-ui/core/Alert';
+import Alert from '@material-ui/lab/Alert';
 // import { Button } from 'bootstrap';
-
-
+import { makeStyles } from '@material-ui/core/styles';
+const useStyles = makeStyles((theme) => ({
+    root: {
+      width: '100%',
+      '& > * + *': {
+        marginTop: theme.spacing(2),
+      },
+    },
+  }));
+  
 export default function CheckCondition(props){
+    const classes = useStyles();
     const[queList,setQueList] = useState(
         [
             {
@@ -138,10 +147,13 @@ export default function CheckCondition(props){
                                     variant="contained" 
                                     size="large" 
                                     color="secondary"
-                                    onChange={e => {
+                                    onClick={() => {
+                                        
+                                       
                                         if(ansList.length != queList.length){
-                                            // <Alert severity="error">Please answer all question</Alert>
+                                            alert("Please answer all the question")
                                         }
+                                        
                                     }}
                                     >Continue</Button>
                             </Box>
@@ -150,9 +162,9 @@ export default function CheckCondition(props){
                     </Grid>
                 <Grid item lg={4} xs={12}>
                     <Box boxShadow={2} padding={8}>
-                        <Box display="flex" flexDirection="row">
+                        <Box display="flex" flexDirection="row" flexWrap="wrap">
                             <img src = "https://images-na.ssl-images-amazon.com/images/I/71-Su4Wr0HL._SY741_.jpg" style={{
-                            maxWidth:"20%",
+                            maxWidth:"40%",
                             height:"auto",
                             }}/>
                             <Box padding={3}>

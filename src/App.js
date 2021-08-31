@@ -10,6 +10,7 @@ import AboutUs from './containers/AboutUs.js'
 import ContactUs from './containers/ContactUs.js'
 import PhoneInfo from './containers/PhoneInfo.js'
 import CheckCondition from './containers/CheckCondition'
+import Checkout from './containers/Checkout'
 // import test from './containers/test.js'
 import TermAndCondition from './containers/TermAndCondition.js'
 import PrivacyPolicy from './containers/TermAndCondition.js'
@@ -35,6 +36,7 @@ function App() {
               <Route path = '/check_condition' component={CheckCondition}/>
               <Route path = '/home' component={Home}/>
               <Route path='/auth' component={Signin}/>
+              <Route path='/checkout' component={Checkout}/>
             </Switch>
           <Footer/>
     </Router>
