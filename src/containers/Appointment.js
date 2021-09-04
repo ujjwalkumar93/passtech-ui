@@ -35,16 +35,9 @@ export default function Appointment(props){
             <Grid container>
                 <Grid item lg={9} xs={12}>
                     <Box display="flex" flexDirection="column" alignContent="center" mx={8} my={4}>
-                        <Typography variant="h5">Address</Typography>
-                        <Typography variant="subtitle2">Please Add/Select Address</Typography>
-                        <Box display="flex" alignSelf="flex-end" mx={8} my={4}>
-                            <Button 
-                            variant="contained" 
-                            color="secondary"
-                            onClick={() => {setAdd(true)}}
-                            >Add Address</Button>
-                        </Box>
-
+                        <Typography variant="h5">Address & Slot Detail</Typography>
+                        <Typography variant="subtitle2">Please Add/Select Address and Slot</Typography>
+                        <Box boxShadow={1} padding={8}>
                         <form className={classes.container} noValidate>
                             <TextField
                                 id="date"
@@ -59,6 +52,7 @@ export default function Appointment(props){
                                 shrink: true,
                                 }}
                             />
+                            <Box my={2}>
                             {
                                 showSlot ? (
                                     slotList.map(slot => {
@@ -77,8 +71,27 @@ export default function Appointment(props){
                                     })
                                 ) : null
                             }
+                            </Box>
                         </form>
+                        </Box>
                     </Box>
+
+                    <Box display="flex" flexDirection="column" alignContent="center" boxShadow={1} padding={8} my={4} mx={8}>
+                            <Box display="flex" alignSelf="flex-end">
+                                <Button 
+                                variant="contained" 
+                                color="secondary"
+                                onClick={() => {setAdd(true)}}
+                                >Add Address</Button>
+                            </Box>
+                            <Box>
+                                {/* <Button 
+                                variant="contained" 
+                                color="secondary"
+                                onClick={() => {setAdd(true)}}
+                                >Add Address</Button> */}
+                            </Box>
+                        </Box>
 
                 </Grid>
                 <Grid item lg={3} xs={12}>
