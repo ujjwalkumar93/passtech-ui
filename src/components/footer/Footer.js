@@ -42,7 +42,7 @@ class GuttersGrid extends React.Component {
     // const { spacing } = this.state;
 
     return (
-        <Grid container style={{backgroundColor: '#f50057', color: 'white', paddingTop:"40px", paddingBottom:"50px"}}>
+        <Grid container style={{backgroundColor: '#389583', color: 'white', paddingTop:"40px", paddingBottom:"50px"}}>
         <Grid item xs={12} lg={3}> 
             <Box borderBottom={1} ml={4} mr={4} mt={4} width={"auto"} >
             <Typography align={"left"} variant="h5"><b>Services</b></Typography>
