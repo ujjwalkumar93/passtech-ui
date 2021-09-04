@@ -56,11 +56,9 @@ export default function Checkout(props){
                 <Box boxShadow={1} mx={8} borderRadius={20} display="flex" my={8} display="flex" justifyContent="center" flexDirection="column" padding={8}>
                     <Box mx={2} my={4} borderBottom={1} flexGrow={1} borderColor="secondary.main" >
                         <Typography variant="h6"><b>Price Summary</b></Typography>
-                        <Box>
-                            <PriceTable/>
-                        </Box>
+                        <PriceTable/>
                     </Box>
-                    <Button variant="contained" color="secondary">Proceed To Pickup Details</Button>
+                    <Button variant="contained" color="secondary">Enter Pickup Details</Button>
                 </Box>
             </Grid>
 
