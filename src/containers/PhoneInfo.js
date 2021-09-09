@@ -8,12 +8,12 @@ const Example = (props) => {
   const variants = [{name:"4GB/64GB", color:"#ffa733"},{name:"6GB/128GB", color:"#8bc34a"}]
   return (
     <Container style={{height:window.screen.height}}>
-    <Box boxShadow={2}>
+    <Box boxShadow={2} marginBottom={8}>
     <Row style={{marginTop:"12%"}}>
       <Col lg={4} xs={12}>
         <img src = "https://images-na.ssl-images-amazon.com/images/I/71-Su4Wr0HL._SY741_.jpg" style={{
           maxWidth:"50%",
-          height:"auto",
+          margin:"64px",
         }}/>
       </Col>
       <Col lg={8} xs={12}>
@@ -40,7 +40,7 @@ const Example = (props) => {
           }
           </Box>
           <Box>
-            <Button style={{marginLeft:"10%", marginTop:18, backgroundColor:"#42c8b7", color:"white", height:50, width:160}}>Get Exact Value</Button>
+            <Button style={{marginLeft:"64px", marginTop:18, backgroundColor:"#42c8b7", color:"white", height:50, width:160}}>Get Exact Value</Button>
           </Box>
       </Col>
       

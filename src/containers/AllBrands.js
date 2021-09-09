@@ -34,21 +34,21 @@ export default function AllBrands(){
     console.log(deviceWidth)
     return(
         <Box display="flex" justifyContent="center" flexDirection="column">
-            <Box marginLeft={5} marginTop={5} display="flex" justifyContent="center" my={4}>
+            <Box mx={8} marginTop={5} display="flex" justifyContent="center" my={4}>
                 <Typography variant="h5">Sell Old Mobile Phone</Typography>
             </Box>
             <Box display={"flex"} justifyContent="center">
                 <Searchbox/>
             </Box>
-            <Box marginLeft={"10%"} marginTop={5}>
+            <Box mx={8} marginTop={5}>
                 <Typography variant="h6">Select Brand</Typography>
             </Box>
-            <Box display="flex" flexWrap="wrap" className={"classes.root"} marginLeft="10%" marginRight="10%" marginTop={8}>
+            <Box display="flex" flexWrap="wrap" mx={8} marginTop={8}>
                 {
                     img_path.map(img => {
                         return(
-                            <Card margin={4}>
-                                <img key={img.key} src={img.path} />
+                            <Card style={{margin:"4px", height:"144px", width:"144px"}}>
+                                <img key={img.key} src={img.path} style={{maxWidth:"100%"}}/>
                             </Card>
                         )
                     })

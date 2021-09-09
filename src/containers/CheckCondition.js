@@ -164,8 +164,7 @@ export default function CheckCondition(props){
                     <Box boxShadow={2} padding={8}>
                         <Box display="flex" flexDirection="row" flexWrap="wrap">
                             <img src = "https://images-na.ssl-images-amazon.com/images/I/71-Su4Wr0HL._SY741_.jpg" style={{
-                            maxWidth:"40%",
-                            height:"auto",
+                            maxWidth:"50%"
                             }}/>
                             <Box padding={3}>
                             <Typography  variant="h6">Redme</Typography>

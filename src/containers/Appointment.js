@@ -1,7 +1,8 @@
 import {React,useState} from "react";
 // import { useState } from 'react';
 import PriceTable from '../components/PriceTable/PriceTable.js';
-import { Box, Typography,Button,Grid,TextField,Chip,Divider} from '@material-ui/core';
+import SetAddress from '../components/Address/Address.js';
+import { Box,Typography,Button,Grid,TextField,Chip} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 
@@ -18,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
   }));
 export default function Appointment(props){
     const today = new Date().toISOString().split('T')[0];
-    console.log(">>>>>>>>>>???",today)
     const[add, setAdd] = useState(false)
     const[showSlot, setShowSlot] = useState(false)
     const[selectedSlot, setSelectedShowSlot] = useState(null)
@@ -29,14 +29,13 @@ export default function Appointment(props){
         {color:"#ffffff", time:"02Am-04AM"},
         {color:"#ffffff", time:"04Am-06AM"}
     ]
-    console.log(">>>>>>>>>>>>>>>>>>",selectedSlot)
     return(
         <Box>
             <Grid container>
                 <Grid item lg={9} xs={12}>
                     <Box display="flex" flexDirection="column" alignContent="center" mx={8} my={4}>
                         <Typography variant="h5">Address & Slot Detail</Typography>
-                        <Typography variant="subtitle2">Please Add/Select Address and Slot</Typography>
+                        <Typography variant="subtitle2">Address and Slot are mandatry</Typography>
                         <Box boxShadow={1} padding={8}>
                         <form className={classes.container} noValidate>
                             <TextField
@@ -76,20 +75,23 @@ export default function Appointment(props){
                         </Box>
                     </Box>
 
-                    <Box display="flex" flexDirection="column" alignContent="center" boxShadow={1} padding={8} my={4} mx={8}>
-                            <Box display="flex" alignSelf="flex-end">
-                                <Button 
-                                variant="contained" 
-                                color="secondary"
-                                onClick={() => {setAdd(true)}}
-                                >Add Address</Button>
+                    <Box display="flex" flexDirection="column" alignContent="center" boxShadow={1} padding={8} paddingTop={4} my={4} mx={8}>
+                            <Box flexGrow={2} display="flex">
+                                <Box flexGrow={1}>
+                                    <Typography variant="h6">Address</Typography>
+                                </Box>
+                                <Box flexGrow={1}>
+                                    <Button 
+                                        variant="contained" 
+                                        color="secondary"
+                                        onClick={() => {setAdd(true)}}
+                                        style={{float:"right"}}
+                                        >+Add New
+                                    </Button>
+                                </Box>
                             </Box>
                             <Box>
-                                {/* <Button 
-                                variant="contained" 
-                                color="secondary"
-                                onClick={() => {setAdd(true)}}
-                                >Add Address</Button> */}
+                                <SetAddress/>
                             </Box>
                         </Box>
 
