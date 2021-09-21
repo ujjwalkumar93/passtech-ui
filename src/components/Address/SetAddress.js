@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Box, Typography ,Button,TextField} from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 export default function SetAddress(){
-    console.log("called.....")
     const stateList = [
       {state: "maharastra"},
       {state: "Goa"},

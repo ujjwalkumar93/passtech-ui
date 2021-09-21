@@ -1,7 +1,9 @@
 import {React,useState} from "react";
 // import { useState } from 'react';
 import PriceTable from '../components/PriceTable/PriceTable.js';
-import SetAddress from '../components/Address/Address.js';
+import SetAddress from '../components/Address/SetAddress.js';
+import BankDetails from '../components/BankDetails/BankDetails.js';
+import GetAddress from '../components/Address/GetAddress.js';
 import { Box,Typography,Button,Grid,TextField,Chip} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -91,15 +93,22 @@ export default function Appointment(props){
                                 </Box>
                             </Box>
                             <Box>
-                                <SetAddress/>
+                                <GetAddress/>
+                            </Box>
+                            <Box>
+                                {
+                                    add ? (<SetAddress/>) : null
+                                }
                             </Box>
                         </Box>
-
                 </Grid>
                 <Grid item lg={3} xs={12}>
                     <Box mx={8} my={4}>
                         <Typography variant="h6"><b>Price Summary</b></Typography>
                         <PriceTable/>
+                    </Box>
+                    <Box mx={8} my={4}>
+                       <BankDetails/>
                     </Box>
                 </Grid>
             </Grid>
