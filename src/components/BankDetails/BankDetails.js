@@ -1,7 +1,7 @@
-import {Box,Card,CardActions,CardContent,Button,Typography,TextField,Radio} from '@material-ui/core';
+import {Box,Card,CardActions,CardContent,Button,Typography,TextField,Radio, Select,InputLabel,MenuItem} from '@material-ui/core';
 import { useState } from 'react';
 
-export default function BankDetails(){
+function Upi(){
     const[newUpi, setUpi] = useState(false)
     return(
         <Box>
@@ -50,5 +50,53 @@ export default function BankDetails(){
                 }
             </Box>
         </Box>
+    )
+}
+
+function Bank(){
+    return(
+        <Box><p>Test    </p></Box>
+    )
+}
+export default function BankDetails(){
+    const[newUpi, setUpi] = useState(false)
+    const [value, setValue] = useState("Cash")
+    const handleChange = e => {
+        setValue(e.target.value)
+    }
+    return(
+        <Box>
+                <Box>
+                    <InputLabel id="demo-simple-select-disabled-label">Select Payment Method</InputLabel>
+                    <Select
+                        labelId="demo-multiple-name-label"
+                        id="pay_method"
+                        value={value}
+                        label="Select Payment Method"
+                        onChange={handleChange}
+                        style={{
+                            maxWidth:"300px", minWidth:"250px",marginBottom:"8px"
+                        }}
+                    >
+                        <MenuItem value="">
+                        </MenuItem>
+                        <MenuItem value={"Cash"}>Cash</MenuItem>
+                        <MenuItem value={"Upi"}>UPI</MenuItem>
+                        <MenuItem value={"Bank Account"}>Bank Account</MenuItem>
+                    </Select>
+                </Box>
+                <Box>
+                    {
+                        value === "Upi" ? (<Upi/>) : null
+                    }
+                    {
+                        value === "Bank Account" ? (<Bank/>) : null
+                    }
+                    {/* {
+                        value === "Upi" ? (<Upi/>) : null
+                    } */}
+                </Box>
+        </Box>
+        // <Upi/>
     )
 }
