@@ -32,7 +32,8 @@ export default function Appointment(props){
         {color:"#ffffff", time:"04Am-06AM"}
     ]
     return(
-        <Box>
+       <Box>
+            <Box>
             <Grid container>
                 <Grid item lg={9} xs={12}>
                     <Box display="flex" flexDirection="column" alignContent="center" mx={8} my={4}>
@@ -113,5 +114,15 @@ export default function Appointment(props){
                 </Grid>
             </Grid>
         </Box>
+        <Grid container justify = "center">
+                <Button 
+                    variant="contained" 
+                    color="green"
+                    onClick={console.log("HH")}
+                    style={{margin:"24  px", float:"center"}}
+                    >Book Appointment
+                </Button>
+                </Grid>
+       </Box>
     )
 }

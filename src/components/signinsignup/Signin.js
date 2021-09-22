@@ -14,6 +14,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Signup from './Signup.js'
+import Fetch from 'react-fetch'
+import { BorderColor } from '@material-ui/icons';
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -36,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: "#389583",
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -50,6 +52,27 @@ const useStyles = makeStyles((theme) => ({
 export default function SignupSignin() {
   const classes = useStyles();
   const [showSignin, setshowSignin] = useState(true)
+  const handleLogin = () => {
+    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+    fetch('https://erp.vedarths.com//api/method/login', {
+    method: 'POST',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        usr: 'ukumar@dexciss.com',
+        pwd: '9955759273'
+    })
+})
+.then(r => r.json())
+.then(r => {
+    console.log(r);
+})
+  }
+  // function handleLogin(){
+  //   console.log("You ressed login")
+  // }
   return (
     showSignin ? ( <Container component="main" maxWidth="xs">
     <CssBaseline />
@@ -95,6 +118,7 @@ export default function SignupSignin() {
           variant="contained"
           color="secondary"
           className={classes.submit}
+          onClick = {handleLogin}
         >
           Sign In
         </Button>

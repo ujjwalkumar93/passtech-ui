@@ -52,14 +52,114 @@ function Upi(){
         </Box>
     )
 }
-
-function Bank(){
+function GetAccounDetails(){
     return(
-        <Box><p>Test    </p></Box>
+        <Box>
+        <Card style={{maxWidth:300}}>
+                <CardContent>
+                    <Box display="flex">
+                        <Box>
+                        <Radio
+                            onChange = {e => console.log(">>>>>>>>>>>>>>")}
+                            checked = {false}
+                        />
+                        </Box>
+                        <Box style={{
+                            maxWidth:"300px", minWidth:"250px"
+                        }}>
+                            <Typography>Ujjwal Kumar</Typography>
+                            <Typography variant="subtitle2">9511807518, pathakujjwal93@gmail.com</Typography>
+                            <Typography variant="subtitle2">Life Republic, Marunhi</Typography>
+                            <Typography variant="subtitle2">Pune maharastra</Typography>
+                        </Box>
+                    </Box>
+                </CardContent>
+            </Card>
+    </Box>
+    )
+}
+function SetBankDetails(){
+    const[newAccount,setNewAccount] = useState(false)
+    return(
+        <Box display="flex" mt={2}>
+            <Box>
+                {newAccount ? (
+                <Box>
+                    <TextField 
+                        id="standard-name" 
+                        label="Account holder Name" 
+                        // value={"test"} 
+                        required = {true}
+                        variant = "filled"
+                        style={{
+                            maxWidth:"300px", minWidth:"250px"
+                        }}
+                        // style={{maxWidth:300, marginTop:"8px"}}
+                        InputLabelProps={{
+                            shrink: true,
+                            }}
+                    />
+                    <TextField 
+                        id="standard-name" 
+                        label="Bank Name" 
+                        // value={"test"} 
+                        required = {true}
+                        variant = "filled"
+                        style={{
+                            maxWidth:"300px", minWidth:"250px",marginBottom:"8px"
+                        }}
+                        InputLabelProps={{
+                            shrink: true,
+                            }}
+                    />
+                    <TextField 
+                        id="standard-name" 
+                        label="IFSC Code" 
+                        // value={"test"} 
+                        required = {true}
+                        variant = "filled"
+                        style={{
+                            maxWidth:"300px", minWidth:"250px",marginBottom:"8px"
+                        }}
+                        InputLabelProps={{
+                            shrink: true,
+                            }}
+                    />
+                </Box>
+                  
+                  ): null}
+                {
+                    !newAccount ? (<Button 
+                        variant="contained" 
+                        color="secondary"
+                        onClick={() => {setNewAccount(true)}}
+                        style={{marginTop:"8px"}}
+                        >+Add New Bank Account
+                    </Button>): null
+                }
+                {
+                    newAccount ? (<Button 
+                        variant="contained" 
+                        color="secondary"
+                        onClick={() => {setNewAccount(false)}}
+                        style={{marginTop:"8px"}}
+                        >Save
+                    </Button>): null
+                }
+            </Box>
+        </Box>
+    )
+}
+function Bank(){
+    return (
+       <Box>
+            <GetAccounDetails/>
+            <SetBankDetails/>
+       </Box>
     )
 }
 export default function BankDetails(){
-    const[newUpi, setUpi] = useState(false)
+    // const[newUpi, setUpi] = useState(false)
     const [value, setValue] = useState("Cash")
     const handleChange = e => {
         setValue(e.target.value)
@@ -92,9 +192,6 @@ export default function BankDetails(){
                     {
                         value === "Bank Account" ? (<Bank/>) : null
                     }
-                    {/* {
-                        value === "Upi" ? (<Upi/>) : null
-                    } */}
                 </Box>
         </Box>
         // <Upi/>

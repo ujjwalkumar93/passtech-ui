@@ -15,6 +15,7 @@ import Checkout from './containers/Checkout'
 import TermAndCondition from './containers/TermAndCondition.js'
 import PrivacyPolicy from './containers/TermAndCondition.js'
 import Appointment from './containers/Appointment.js'
+import Profile from './containers/Profile.js'
 import {BrowserRouter as Router, Route, Switch,useHistory,create} from 'react-router-dom'
 import { createBrowserHistory } from 'history';
 //import { ThemeProvider } from '@material-ui/core/styles';
@@ -39,6 +40,7 @@ function App() {
               <Route path='/auth' component={Signin}/>
               <Route path='/checkout' component={Checkout}/>
               <Route path='/appointment' component={Appointment}/>
+              <Route path='/profile' component={Profile}/>
             </Switch>
           <Footer/>
     </Router>

@@ -2,12 +2,6 @@ import {Box,Card,CardActions,CardContent,Button,Typography,Radio} from '@materia
 export default function GetAddress() {
   return (
     <Card style={{maxWidth:300}}>
-        {/* <CardActions>
-        <Radio
-        onChange = {e => console.log(">>>>>>>>>>>>>>")}
-        checked = {false}
-        />
-        </CardActions> */}
       <CardContent>
       <Box display="flex">
         <Box>
