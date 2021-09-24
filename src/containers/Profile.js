@@ -5,6 +5,8 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import TextField from '@mui/material/TextField';
+import { useState } from 'react';
+import SaveIcon from '@material-ui/icons/Save';
 // import Grid from '@mui/material/Grid';
 
 const style = {
@@ -31,12 +33,14 @@ function Greeting(){
 }
 
 function ViewAndEditProfile(){
+    const[allowModify,setAllowModify] = useState(false)
     return(
         <Grid container>
             <Box display="flex" flexDirection="column" boxShadow={1} pt={6} pb={6}>
                 <Grid item xs={8} lg={8}>
                     <TextField 
                         id="standard-name" 
+                        disabled={!allowModify}
                         label="Full Name" 
                         defaultValue="Ujjwal"
                         required = {true}
@@ -44,15 +48,14 @@ function ViewAndEditProfile(){
                         InputLabelProps={{
                             shrink: true,
                         }}
-                        InputProps={{
-                            readOnly: true,
-                        }} 
                         style={{
                             marginBottom:8,
-                            width:300
+                            width:300,
+                            marginLeft:16
                         }}
                     />
-                    <TextField 
+                    <TextField
+                        disabled={!allowModify}
                         id="standard-name" 
                         label="Email" 
                         defaultValue="ukumar@dexciss.com"
@@ -61,15 +64,47 @@ function ViewAndEditProfile(){
                         style={{
                             width:300,
                             marginBottom:8,
+                            marginLeft:16
                         }}
                         InputLabelProps={{
                             shrink: true,
                         }}
-                        InputProps={{
-                            readOnly: true,
-                        }} 
                     />
                 </Grid>
+                    {!allowModify ? (<Button 
+                        variant="outlined"
+                        onClick={e => {setAllowModify(true)}}
+                        style={{
+                            maxWidth:300,
+                            marginLeft:16,
+                            color:"red"
+                        }}
+                    >Modify</Button>): null}
+                    {
+                        allowModify ? (
+                            <Box mt={1}>
+                        <Button 
+                            variant="outlined"
+                            onClick={e => {setAllowModify(false)}}
+                            style={{
+                                maxWidth:300,
+                                marginLeft:16,
+                                color:"red"
+                            }}
+                        >Cancel</Button>
+                        <Button 
+                            variant="outlined"
+                            onClick={e => {setAllowModify(false)}}
+                            startIcon={<SaveIcon/>}
+                            style={{
+                                maxWidth:300,
+                                marginLeft:16,
+                                color:"red"
+                            }}
+                        >Save</Button>
+                    </Box>
+                        ) : null
+                    }
             </Box>
         </Grid>
     )
@@ -83,6 +118,9 @@ export default function Profile() {
                     <List sx={style} component="nav" aria-label="mailbox folders">
                         <ListItem button>
                             <ListItemText primary="Profile Information" />
+                        </ListItem>
+                        <ListItem button>
+                            <ListItemText primary="Change Password" />
                         </ListItem>
                         <Divider />
                         <ListItem button divider>
