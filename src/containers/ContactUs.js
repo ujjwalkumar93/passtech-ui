@@ -17,7 +17,44 @@ const useStyles = makeStyles({
     },
   });
 
-  
+  async function handleSubmit(e){
+    console.log("handle submit called")
+    let responce = await fetch('http://18.116.85.94/api/method/pastech_app.api.create_customer_enquiry', {
+    method: 'POST',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        name: 'ujjwal',
+        phone:"123",
+        email: 'yourOtherValue',
+        data: "1234"
+    })
+    })
+
+    let data = await responce.json();
+    console.log(data);
+
+    // let response = await fetch('http://18.116.85.94/api/method/pastech_app.api.get_all_branbds', {
+    // method: 'GET',
+    // headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json',
+    // },
+    // body: JSON.stringify({
+    //     name: 'ujjwal',
+    //     email: 'yourOtherValue',
+    // })
+    //})
+    // .then( resp => {
+    //     console.log("resp Is: ",resp.json())
+    // })
+    //let response = await fetch('someurltoAJsonFile.json');
+//   let data = await response.json();
+//   console.log(data);
+    
+}
 export default function ContactUs(){
     const classes = useStyles();
     return(
@@ -57,6 +94,7 @@ export default function ContactUs(){
                                 </Box>
                                 <Box marginTop={2}>
                                 <Button variant="contained" 
+                                    onClick={e => handleSubmit(e)}
                                     style={{background:"#42c8b7", 
                                     color:"white",
                                     fullWidth:true,

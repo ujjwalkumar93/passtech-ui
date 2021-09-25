@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
@@ -14,6 +14,7 @@ import FlareIcon from '@material-ui/icons/Flare';
 import Carousel from '../components/carousel/Carousel.js'
 import Button from '@material-ui/core/Button';
 import { useHistory } from "react-router-dom";
+import { useState } from 'react';
 const useStyles = makeStyles({
     root: {
       maxWidth: 345,
@@ -23,17 +24,40 @@ const useStyles = makeStyles({
       height: 140,
     },
   });
-  
-export default function Home(){
+async function allBrands(){
+    let response = await fetch('http://18.116.85.94/api/method/pastech_app.api.get_all_brands', {
+    method: 'GET',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+    }})
+    //let response = await fetch('someurltoAJsonFile.json');
+    let data = await response.json();
+    console.log(data);
+}
+export default  function Home(){
+    const [brand, setBrand] = useState([])
     let history = useHistory();
     //const classes = useStyles();
     const classes = useStyles();
-    var img_path = [
-        {path: "https://s3n.cashify.in/cashify/brand/img/xhdpi/cb96df6e-080f.jpg", key:'1'},
-        {path: "https://s3n.cashify.in/cashify/brand/img/xhdpi/1071214e-b44f.jpg", key:'2'},
-        {path: "https://s3n.cashify.in/cashify/brand/img/xhdpi/406a512d-e8dd.jpg", key:'3'},
-        {path: "https://s3n.cashify.in/cashify/brand/img/xhdpi/0124cc45-3a6c.jpg", key:'4'}
-    ]
+
+
+    useEffect(() => {
+        async function allBrands(){
+            let response = await fetch('http://18.116.85.94/api/method/pastech_app.api.get_all_brands', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }})
+            //let response = await fetch('someurltoAJsonFile.json');
+            let data = await response.json();
+            console.log(data);
+            setBrand(data.message)
+        }
+    allBrands()
+    },[])
+   
     var card_img = [
         {path: "https://img.freepik.com/free-photo/isolated-phone-grey-background_125540-777.jpg?size=626&ext=jpg", key:'1',title:"Check Price",content:"Lizards are a widespread group of squamate reptiles, with over 6,000 species, rangingacross all continents except Antarctica"},
         {path: "https://media.wired.com/photos/5fbc19ee7d0f9cbf83c80334/master/pass/Gear-Pixel-4A-Barely-Blue-SOURCE-Google.jpg", key:'2',title:"Schedule Pickup",content:"Lizards are a widespread group of squamate reptiles, with over 6,000 species, rangingacross all continents except Antarctica"},
@@ -91,9 +115,9 @@ export default function Home(){
          </Box>
             <Box display="flex" justifyContent="center" marginY={2} flexWrap="wrap">
                 {
-                    img_path.map(img => {
+                    brand.slice(0,4).map(img => {
                         return(
-                            <img key={img.key} src={img.path} height="100" width="100"/>
+                            <img key={img.key} src={img.brand_logo} height="100" width="100"/>
                         )
                     })
                 }
