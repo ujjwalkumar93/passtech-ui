@@ -34,7 +34,7 @@ function App() {
               <Route path='/contact_us' component={ContactUs}/>
               <Route path = '/term_and_condition' component={TermAndCondition}/>
               <Route path = '/privacy_policy' component={PrivacyPolicy}/>
-              <Route path = '/phone_info' component={PhoneInfo}/>
+              <Route path = '/phone_info/:model' component={PhoneInfo}/>
               <Route path = '/check_condition' component={CheckCondition}/>
               <Route path = '/home' component={Home}/>
               <Route path='/auth' component={Signin}/>
