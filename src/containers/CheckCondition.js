@@ -3,6 +3,7 @@ import { Typography,Box,Grid,Checkbox,FormControlLabel,Button } from '@material-
 import Alert from '@material-ui/lab/Alert';
 // import { Button } from 'bootstrap';
 import { makeStyles } from '@material-ui/core/styles';
+import { useHistory } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
     root: {
       width: '100%',
@@ -13,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
   }));
   
 export default function CheckCondition(props){
+    let history = useHistory()
     const classes = useStyles();
     const[queList,setQueList] = useState(
         [
@@ -148,14 +150,16 @@ export default function CheckCondition(props){
                                     size="large" 
                                     color="secondary"
                                     onClick={() => {
-                                        
-                                       
                                         if(ansList.length != queList.length){
                                             alert("Please answer all the question")
                                         }
+                                        else {
+                                            // history.push('/checkout')
+                                            history.push('/primary_condition')
+                                        }
                                         
                                     }}
-                                    >Continue</Button>
+                                    >Next</Button>
                             </Box>
                         </Box>
                     </Box>
