@@ -8,15 +8,15 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import PriceTable from '../components/PriceTable/PriceTable.js';
-
+import { useHistory } from "react-router-dom";
 
 export default function Checkout(props){
   const [expanded, setExpanded] = React.useState(false);
-
+  let history = useHistory()
   
 
   const handleChange = (panel) => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
+        setExpanded(isExpanded ? panel : false);
   };
     return( 
         <Grid container>
@@ -58,7 +58,13 @@ export default function Checkout(props){
                         <Typography variant="h6"><b>Price Summary</b></Typography>
                         <PriceTable/>
                     </Box>
-                    <Button variant="contained" color="secondary">Enter Pickup Details</Button>
+                    <Button 
+                        variant="contained" 
+                        color="secondary"
+                        onClick={() => {
+                            history.push("/appointment")
+                        }}
+                        >Enter Pickup Details</Button>
                 </Box>
             </Grid>
 
