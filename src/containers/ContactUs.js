@@ -7,6 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import $ from 'jquery';
 const useStyles = makeStyles({
     root: {
       maxWidth: '100%',
@@ -19,24 +20,42 @@ const useStyles = makeStyles({
 
   async function handleSubmit(e){
     console.log("handle submit called")
-    let responce = await fetch('http://18.116.85.94/api/method/pastech_app.api.create_customer_enquiry', {
-    method: 'POST',
-    headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-        name: 'ujjwal',
-        phone:"123",
-        email: 'yourOtherValue',
-        data: "1234"
+
+
+
+    //let responce = await fetch('http://18.117.91.127/api/method/pastech_app.api.test', {
+   // let responce = await fetch('http://18.117.91.127/api/method/pastech_app.api.create_customer_enquiry?name=test&phone=123&email=test@gmail.com&data=ererere', {
+    //let responce = await fetch('http://localhost:8001/api/method/uttamenergy.api.create_customer_enquiry?name=test&phone=123&email=test@gmail.com&data=ererere', {
+//     method: 'GET',
+//     mode: 'cors',
+//     headers: {
+//         'Authorization': 'token api_key:cbbfeb49897d3c5',
+//         'Accept': 'application/json',
+//         //'Content-Type' : 'application/x-www-form-urlencoded',
+//         'Content-Type': 'application/json;charset=utf-8',
+//         'Access-Control-Allow-Origin' : '*',
+    
+//     }
+//     }
+//    )
+
+    // let data = await responce.json();
+    // console.log("is date...")
+    // console.log(data);
+
+
+
+    fetch('http://18.117.91.127/api/method/pastech_app.api.create_customer_enquiry?name=ujjwal&phone=9511807518&email=ujjwal@gmail.com&data=please call me', {
+        headers: {
+            'Authorization': 'token 4da9d59cc0cca77:cbbfeb49897d3c5'
+        }
     })
+    .then(r => r.json())
+    .then(r => {
+        console.log(r);
     })
 
-    let data = await responce.json();
-    console.log(data);
-
-    // let response = await fetch('http://18.116.85.94/api/method/pastech_app.api.get_all_branbds', {
+    // let response = await fetch('http://18.117.91.127/api/method/pastech_app.api.get_all_branbds', {
     // method: 'GET',
     // headers: {
     //     'Accept': 'application/json',
