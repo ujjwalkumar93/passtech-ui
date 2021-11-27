@@ -44,7 +44,7 @@ export default  function Home(){
 
     useEffect(() => {
         async function allBrands(){
-            let response = await fetch('http://18.116.85.94/api/method/pastech_app.api.get_all_brands', {
+            let response = await fetch('http://18.117.91.127/api/method/pastech_app.api.get_all_brands', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -52,6 +52,7 @@ export default  function Home(){
             }})
             //let response = await fetch('someurltoAJsonFile.json');
             let data = await response.json();
+            console.log("brands are: ")
             console.log(data);
             setBrand(data.message)
         }
@@ -117,7 +118,7 @@ export default  function Home(){
                 {
                     brand.slice(0,4).map(img => {
                         return(
-                            <img key={img.key} src={img.brand_logo} height="100" width="100"/>
+                            <img key={img.brand_name} src={"http://18.117.91.127/"+img.brand_logo} height="100" width="100"/>
                         )
                     })
                 }

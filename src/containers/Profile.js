@@ -208,7 +208,7 @@ function SalesHistory(){
     const[data,setData] = useState([])
     const rows = [
         createData('01-03-2021', "Oppo-01", 1000,"COD"),
-        createData('01-03-2021', "Oppo-01", 1000,"COD"),
+        createData('01-03-2021', "Oppo-01", 1000,"Bank"),
         
       ];
     let totalOrder = data.length 
@@ -218,8 +218,8 @@ function SalesHistory(){
                 totalOrder == 1 ? (
                     <Typography>No History Found</Typography>
                 ): (
-                    <TableContainer component={Paper}>
-                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <Box>
+                        <Table sx={{ maxWidth: 400 }} aria-label="simple table">
                             <TableHead>
                             <TableRow>
                                 <TableCell>Date</TableCell>
@@ -244,7 +244,7 @@ function SalesHistory(){
                             ))}
                             </TableBody>
                         </Table>
-                        </TableContainer>
+                        </Box>
                 )
             }
         </Box>
