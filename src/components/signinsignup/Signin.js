@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import GoogleLogin from 'react-google-login';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -35,6 +36,8 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    minHeight:500,
+    paddingTop:"40%"
   },
   avatar: {
     margin: theme.spacing(1),
@@ -52,98 +55,34 @@ const useStyles = makeStyles((theme) => ({
 export default function SignupSignin() {
   const classes = useStyles();
   const [showSignin, setshowSignin] = useState(true)
-  const handleLogin = () => {
-    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-    fetch('https://erp.vedarths.com//api/method/login', {
-    method: 'POST',
-    headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-        usr: 'ukumar@dexciss.com',
-        pwd: '9955759273'
-    })
-})
-.then(r => r.json())
-.then(r => {
-    console.log(r);
-})
+  const auth_success = resp => {
+    console.log("Success", resp)
   }
-  // function handleLogin(){
-  //   console.log("You ressed login")
-  // }
+  const auth_fail = resp => {
+    console.log("faill", resp)
+  }
   return (
-    showSignin ? ( <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs">
     <CssBaseline />
     <div className={classes.paper}>
       <Avatar className={classes.avatar}>
         <LockOutlinedIcon />
       </Avatar>
       <Typography component="h1" variant="h5">
-        Sign in
+        Wellcome To Passtech
       </Typography>
-      <form className={classes.form} noValidate>
-        <TextField
-          variant="outlined"
-          margin="normal"
-          required
-          fullWidth
-          id="email"
-          label="Email Address"
-          name="email"
-          autoComplete="email"
-          autoFocus
-          color="secondary"
-        />
-        <TextField
-          variant="outlined"
-          margin="normal"
-          required
-          fullWidth
-          name="password"
-          label="Password"
-          type="password"
-          id="password"
-          autoComplete="current-password"
-          color="secondary"
-        />
-        <FormControlLabel
-          control={<Checkbox value="remember" color="primary" color="secondary"/>}
-          label="Remember me"
-        />
-        <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          color="secondary"
-          className={classes.submit}
-          onClick = {handleLogin}
-        >
-          Sign In
-        </Button>
-        <Grid container>
-          <Grid item xs>
-            <Link href="#" variant="body2">
-              Forgot password?
-            </Link>
-          </Grid>
-          <Grid item>
-            <Link variant="body2"
-              onClick={() => {setshowSignin(false)}}
-            >
-              {"Don't have an account? Sign Up"}
-            </Link>
-          </Grid>
-        </Grid>
-      </form>
+      <GoogleLogin
+        clientId="498104296916-uvjfdfdfr01u554eu5jqc1ajad3jefqq.apps.googleusercontent.com"
+        buttonText="Login With Your Gmail Account"
+        onSuccess={auth_success}
+        onFailure={auth_fail}
+        cookiePolicy={'single_host_origin'}
+    />
     </div>
     <Box mt={8}>
       <Copyright />
     </Box>
   </Container>
-) : (
-  <Signup/>
-)
   );
 }
+

@@ -135,7 +135,10 @@ export default function PrimarySearchAppBar() {
     <div className={classes.grow}>
       <AppBar position="static" style={{ background: '#7cc1ac' }}>
         <Toolbar>
-          <Typography className={classes.title} variant="h6" noWrap onClick={e => history.push("home")}>
+          <Typography 
+            className={classes.title} 
+            variant="h6" 
+            noWrap onClick={e => history.push("/home")}>
             PassTech
           </Typography>
           <div className={classes.search}>

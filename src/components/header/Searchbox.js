@@ -7,29 +7,19 @@ export default function Searchbox() {
   let history = useHistory();
 
   useEffect(() => {
-    const items = [
-      {name: 'Test-Ujjwal', key: 'dfb8fa56db',variant:["4GB/64GB","8GB/120GB"],color:"#8bc34a"},
-      {name: 'Redme', key: 'dfb8fa56db2',variant:["4GB/64GB","8GB/120GB"],color:"#8bc34a"},
-      
-    ]
-    //const items = ["Iphone"]
     async function allBrands(){
-        let response = await fetch('http://18.117.91.127/api/method/pastech_app.api.get_all_mobiles', {
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        }})
-        //let response = await fetch('someurltoAJsonFile.json');
-        let data = await response.json();
-        console.log("Data is:  ")
-        console.log(data);
-       //selModel(data.message)
-        selModel(items)
+      let response = await fetch('http://18.117.91.127/api/method/pastech_app.api.get_all_mobiles', {
+      method: 'GET',
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+      }})
+      let data = await response.json();
+      selModel(data.message)
+
     }
 allBrands()
 },[])
-console.log("model: ",model)
   const handleOnSearch = (string, results) => {
     // onSearch will have as the first callback parameter
     // the string searched and for the second the results.
@@ -44,7 +34,7 @@ console.log("model: ",model)
   const handleOnSelect = (item) => {
     // the item selected
     console.log("selected:  ",item)
-    history.push(`/phone_info/${item.name}`)
+    history.push(`/phone_info/${item.name}`,{data: item})
   }
 
   const handleOnFocus = () => {

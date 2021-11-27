@@ -10,6 +10,7 @@ import AboutUs from './containers/AboutUs.js'
 import ContactUs from './containers/ContactUs.js'
 import PhoneInfo from './containers/PhoneInfo.js'
 import CheckCondition from './containers/CheckCondition'
+import PrimaryCheckCondition from './containers/PrimaryCheckCondition'
 import Checkout from './containers/Checkout'
 // import test from './containers/test.js'
 import TermAndCondition from './containers/TermAndCondition.js'
@@ -36,11 +37,13 @@ function App() {
               <Route path = '/privacy_policy' component={PrivacyPolicy}/>
               <Route path = '/phone_info/:model' component={PhoneInfo}/>
               <Route path = '/check_condition' component={CheckCondition}/>
-              <Route path = '/home' component={Home}/>
+              <Route path='/primary_condition' component={PrimaryCheckCondition}/>
+              {/* <Route path = '/home' component={Home}/> */}
               <Route path='/auth' component={Signin}/>
               <Route path='/checkout' component={Checkout}/>
               <Route path='/appointment' component={Appointment}/>
               <Route path='/profile' component={Profile}/>
+              <Route path = '/' component={Home}/>
             </Switch>
           <Footer/>
     </Router>
