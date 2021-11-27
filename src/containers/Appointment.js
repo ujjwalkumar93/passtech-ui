@@ -118,8 +118,8 @@ export default function Appointment(props){
                 <Button 
                     variant="contained" 
                     color="green"
-                    onClick={console.log("HH")}
-                    style={{margin:"24  px", float:"center"}}
+                    onClick={() => {alert("Appointment Booked")}}
+                    style={{margin:"24px", float:"center"}}
                     >Book Appointment
                 </Button>
                 </Grid>
