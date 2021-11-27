@@ -46,7 +46,7 @@ const PhoneInfo = (props) => {
           'Content-Type': 'application/json',
       }})
       let data = await response.json();
-      console.log("data.message is: ",data.message)
+      console.log("data.message is: ",data)
       setPhoneDetails(data.message)
 
     }
@@ -59,20 +59,20 @@ const PhoneInfo = (props) => {
     <Box boxShadow={2} marginBottom={8}>
     <Row style={{marginTop:"12%"}}>
       <Col lg={4} xs={12}>
-        <img src = "https://images-na.ssl-images-amazon.com/images/I/71-Su4Wr0HL._SY741_.jpg" style={{
+           <img src = {`http://18.117.91.127/${phoneDetails.phone_image}`} style={{
           maxWidth:"50%",
           margin:"64px",
         }}/>
       </Col>
       <Col lg={8} xs={12}>
-        <Typography  variant="h3">{phoneDetails[0].name}</Typography>
-        <Typography style={{fontSize:24, marginTop:8}}><b>Model:</b> {phoneDetails[0].model_name}</Typography>
+        <Typography  variant="h3">{phoneDetails.name}</Typography>
+        <Typography style={{fontSize:24, marginTop:8}}><b>Model:</b> {phoneDetails.model_name}</Typography>
         {/* <Typography variant="h5" style={{fontSize:24, marginTop:8}}>Specification</Typography> */}
-        <Typography variant="subtitle1" ><b>RAM:</b> {phoneDetails[0].ram}</Typography>
-        <Typography variant="subtitle1"><b>ROM:</b> {phoneDetails[0].rom}</Typography>
+        <Typography variant="subtitle1" ><b>RAM:</b> {phoneDetails.ram}</Typography>
+        <Typography variant="subtitle1"><b>ROM:</b> {phoneDetails.rom}</Typography>
         <Box>
           <Typography variant="h5">Get Upto</Typography>
-          <Typography variant="h3" style={{color:"red"}}>₹10000/-</Typography>
+          <Typography variant="h3" style={{color:"red"}}>₹{phoneDetails.maximum_price}/-</Typography>
         </Box>
             
           <Box>
