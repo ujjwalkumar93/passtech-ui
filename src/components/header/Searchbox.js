@@ -8,7 +8,7 @@ export default function Searchbox() {
 
   useEffect(() => {
     async function allBrands(){
-      let response = await fetch('http://18.117.91.127/api/method/pastech_app.api.get_all_mobiles', {
+      let response = await fetch('http://139.59.89.95/api/method/pastech_app.api.get_all_mobiles', {
       method: 'GET',
       headers: {
           'Accept': 'application/json',

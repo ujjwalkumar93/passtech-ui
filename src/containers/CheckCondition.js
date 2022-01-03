@@ -16,61 +16,31 @@ const useStyles = makeStyles((theme) => ({
 export default function CheckCondition(props){
     let history = useHistory()
     const classes = useStyles();
-    const[queList,setQueList] = useState(
-        [
-            {
-                id:0,
-                q:"Are you able to make and receive calls?",
-                d:"Check your device for cellular network connectivity issues.",
-                y:false,
-                n:false,
-                yd:"Yes i am able to make and receive and make call",
-                nd:"No i am able to make and receive and make call"
-            },
-            {
-                id:1,
-                q:"Are you able to make and receive calls?",
-                d:"Check your device for cellular network connectivity issues.",
-                y:false,
-                n:false,
-                yd:"Yes i am able to make and receive and make call",
-                nd:"No i am able to make and receive and make call"
-            },
-            {
-                id:2,
-                q:"Are you able to make and receive calls?",
-                d:"Check your device for cellular network connectivity issues.",
-                y:false,
-                n:false,
-                yd:"Yes i am able to make and receive and make call",
-                nd:"No i am able to make and receive and make call"
-            },
-            {
-                id:3,
-                q:"Are you able to make and receive calls?",
-                d:"Check your device for cellular network connectivity issues.",
-                y:false,
-                n:false,
-                yd:"Yes i am able to make and receive and make call",
-                nd:"No i am able to make and receive and make call"
-            },
-            {
-                id:4,
-                q:"Are you able to make and receive calls?",
-                d:"Check your device for cellular network connectivity issues.",
-                y:false,
-                n:false,
-                yd:"Yes i am able to make and receive and make call",
-                nd:"No i am able to make and receive and make call"
-            },
-        ]
-)
+    const[queList,setQueList] =useState ([]);
+
+useEffect(() => {
+    async function phoneCondition(){
+      let url = `http://139.59.89.95/api/method/pastech_app.api.get_primary_condition_check?mobile=${props.match.params.model}`
+      let response = await fetch(url, {
+      method: 'GET',
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+      }})
+      let data = await response.json();
+      setQueList(data.message)
+
+    }
+    phoneCondition()
+  },[])
 
     const[ansList,setAnsLinst] =useState([])
 
         const handleCheck = (e) => {
-            let objIndex = queList.findIndex((obj => obj.id == e.id));
-            
+            let objIndex = queList.findIndex((obj => obj.name == e.id));
+            console.log("queList is: ",queList)
+            console.log("e is: ",e)
+            console.log("objIndex is: ",objIndex)
             if(e.key === "y"){
                 if(!queList[objIndex].n){
                     queList[objIndex].y = e.val
@@ -87,14 +57,13 @@ export default function CheckCondition(props){
         useEffect(() => {
             let a = []
             queList.map(q => {
-                //console.log(">>>>>>>>>>>>>>>>>>>>>>>>>q is: ",q)
                 if(q.y){
-                    console.log(q.yd)
-                    a.push(q.yd)
+                    console.log(q.yes)
+                    a.push(q.yes)
                 }
                 if(q.n){
-                    console.log(q.nd)
-                    a.push(q.nd)
+                    console.log(q.no)
+                    a.push(q.no)
                 }
 
             })
@@ -113,15 +82,15 @@ export default function CheckCondition(props){
                             queList.map(que => {
                                 return(
                                     <Box margin={3} boxShadow={2} padding={3}>
-                                        <Typography variant="h5">{que.q}</Typography>
-                                        <Typography variant="subtitle1">{que.d}</Typography>
+                                        <Typography variant="h5">{que.questation}</Typography>
+                                        <Typography variant="subtitle1">{que.description}</Typography>
 
                                         <FormControlLabel
                                         control={
                                             <Checkbox
-                                                key={que.id+"Y"}
+                                                key={que.name+"Y"}
                                                 checked={que.y}
-                                                onChange={(e) =>  handleCheck({id:que.id,val:!que.y,key:"y"})}
+                                                onChange={(e) =>  handleCheck({id:que.name,val:!que.y,key:"y"})}
                                                 name="checkedA"
                                                 color="secondary"
                                             />
@@ -131,9 +100,9 @@ export default function CheckCondition(props){
                                         <FormControlLabel
                                             control={
                                                 <Checkbox
-                                                    key={que.id+"N"}
+                                                    key={que.name+"N"}
                                                     checked={que.n}
-                                                    onChange={(e) => handleCheck({id:que.id,val:!que.n,key:"n"})}
+                                                    onChange={(e) => handleCheck({id:que.name,val:!que.n,key:"n"})}
                                                     name="checkedB"
                                                     color="secondary"
                                                 />
@@ -155,7 +124,8 @@ export default function CheckCondition(props){
                                         }
                                         else {
                                             // history.push('/checkout')
-                                            history.push('/primary_condition')
+                                            // history.push('/primary_condition')
+                                            history.push(`/primary_condition/${props.match.params.model}`,{data: props.match.params.model})
                                         }
                                         
                                     }}

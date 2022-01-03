@@ -33,11 +33,11 @@ const PhoneInfo = (props) => {
   const [showExpPrice, setShowExpPrice] = useState(false);
   const[phoneDetails, setPhoneDetails] = useState()
   const variants = [{name:"4GB/64GB", color:"#ffa733"},{name:"6GB/128GB", color:"#8bc34a"},{name:"6GB/128GB", color:"#8bc34a"}]
-  console.log("Props data is: ",props.match.params)
+console.log("Props data is: ",props.match.params)
   let history = useHistory();
   useEffect(() => {
     async function phoneInfo(){
-      let url = `http://18.117.91.127/api/method/pastech_app.api.get_mobile_info?mobile=${props.match.params.model}`
+      let url = `http://139.59.89.95/api/method/pastech_app.api.get_mobile_info?mobile=${props.match.params.model}`
       console.log("url is: ",url)
       let response = await fetch(url, {
       method: 'GET',
@@ -59,7 +59,7 @@ const PhoneInfo = (props) => {
     <Box boxShadow={2} marginBottom={8}>
     <Row style={{marginTop:"12%"}}>
       <Col lg={4} xs={12}>
-           <img src = {`http://18.117.91.127/${phoneDetails.phone_image}`} style={{
+           <img src = {`http://139.59.89.95/${phoneDetails.phone_image}`} style={{
           maxWidth:"50%",
           margin:"64px",
         }}/>
@@ -83,9 +83,13 @@ const PhoneInfo = (props) => {
               backgroundColor:"#42c8b7", 
               color:"white", 
               height:50, 
-              width:160
+              width:160,
+              marginBottom : 18,
             }}
-            onClick= {() => {history.push("/check_condition")}}
+            onClick= {() => {
+              history.push(`/secondry_condition/${phoneDetails.name}`,{data: phoneDetails})
+              //history.push(`/secondry_condition/${item.name`)
+            }}
             >Get Exact Value</Button>
           </Box>
       </Col>

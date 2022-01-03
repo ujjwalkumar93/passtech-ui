@@ -25,7 +25,7 @@ const useStyles = makeStyles({
     },
   });
 async function allBrands(){
-    let response = await fetch('http://18.116.85.94/api/method/pastech_app.api.get_all_brands', {
+    let response = await fetch('http://139.59.89.95/api/method/pastech_app.api.get_all_brands', {
     method: 'GET',
     headers: {
         'Accept': 'application/json',
@@ -44,12 +44,15 @@ export default  function Home(){
 
     useEffect(() => {
         async function allBrands(){
-            let response = await fetch('http://18.117.91.127/api/method/pastech_app.api.get_all_brands', {
+            console.log("<>><><<>")
+            let response = await fetch('http://139.59.89.95/api/method/pastech_app.api.get_all_brands', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json,charset=utf-8',
+                //'contentType': 'application/json; charset=utf-8',
             }})
+            console.log(">>>>>>")
             //let response = await fetch('someurltoAJsonFile.json');
             let data = await response.json();
             console.log("brands are: ")

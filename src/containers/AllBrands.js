@@ -34,7 +34,7 @@ export default function AllBrands(){
     var deviceWidth = window.screen.width*.65
     useEffect(() => {
         async function allBrands(){
-            let response = await fetch('http://18.117.91.127/api/method/pastech_app.api.get_all_brands', {
+            let response = await fetch('http://139.59.89.95/api/method/pastech_app.api.get_all_brands', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -42,6 +42,7 @@ export default function AllBrands(){
             }})
             //let response = await fetch('someurltoAJsonFile.json');
             let data = await response.json();
+            console.log("all_brands are:    ")
             console.log(data);
             setBrand(data.message)
         }
@@ -63,7 +64,7 @@ export default function AllBrands(){
                     brand.map(img => {
                         return(
                             <Card style={{margin:"4px", height:"144px", width:"144px"}}>
-                                <img key={img.brand_name} src={"http://18.117.91.127/"+img.brand_logo} style={{maxWidth:"100%"}}/>
+                                <img key={img.brand_name} src={"http://139.59.89.95/"+img.brand_logo} style={{maxWidth:"100%"}}/>
                             </Card>
                         )
                     })

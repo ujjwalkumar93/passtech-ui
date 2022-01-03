@@ -45,9 +45,9 @@ const useStyles = makeStyles({
 
 
 
-    fetch('http://18.117.91.127/api/method/pastech_app.api.create_customer_enquiry?name=ujjwal&phone=9511807518&email=ujjwal@gmail.com&data=please call me', {
+    fetch('http://139.59.89.95/api/method/pastech_app.api.create_customer_enquiry?name=ujjwal&phone=9511807518&email=ujjwal@gmail.com&data=please call me', {
         headers: {
-            'Authorization': 'token 4da9d59cc0cca77:cbbfeb49897d3c5'
+            'Authorization': 'token 922bf15398fb62d:eed30f308e813e0'
         }
     })
     .then(r => r.json())
