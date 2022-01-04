@@ -212,6 +212,7 @@ const useStyles = makeStyles((theme) => ({
   }));
   
 export default function CheckCondition(props){
+    console.log("props: >>> ",props)
     let history = useHistory()
     const classes = useStyles();
     const[queList,setQueList] =useState ([]);
@@ -324,7 +325,7 @@ useEffect(() => {
                                         else {
                                             // history.push('/checkout')
                                             // history.push('/primary_condition')
-                                            history.push(`/primary_condition/${props.match.params.model}`,{data: props.match.params.model})
+                                            history.push(`/checkout`,{data: props.match.params.model})
                                         }
                                         
                                     }}

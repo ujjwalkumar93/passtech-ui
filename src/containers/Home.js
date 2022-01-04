@@ -52,7 +52,6 @@ export default  function Home(){
                 'Content-Type': 'application/json,charset=utf-8',
                 //'contentType': 'application/json; charset=utf-8',
             }})
-            console.log(">>>>>>")
             //let response = await fetch('someurltoAJsonFile.json');
             let data = await response.json();
             console.log("brands are: ")
@@ -120,8 +119,9 @@ export default  function Home(){
             <Box display="flex" justifyContent="center" marginY={2} flexWrap="wrap">
                 {
                     brand.slice(0,4).map(img => {
+                        console.log(">>>>>>>>>>>>>>>>> img.brand_logo: ",img.brand_logo)
                         return(
-                            <img key={img.brand_name} src={"http://18.117.91.127/"+img.brand_logo} height="100" width="100"/>
+                            <img key={img.brand_name} src={"http://139.59.89.95"+img.brand_logo} height="100" width="100"/>
                         )
                     })
                 }

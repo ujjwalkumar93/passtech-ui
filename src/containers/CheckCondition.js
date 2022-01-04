@@ -17,6 +17,8 @@ export default function CheckCondition(props){
     let history = useHistory()
     const classes = useStyles();
     const[queList,setQueList] =useState ([]);
+    console.log(">><><><<jhhgfdsghj")
+    console.log("props.match.param: ",props)
 
 useEffect(() => {
     async function phoneCondition(){

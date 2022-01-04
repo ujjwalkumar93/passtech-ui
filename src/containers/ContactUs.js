@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Typography,Box } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -18,64 +18,31 @@ const useStyles = makeStyles({
     },
   });
 
-  async function handleSubmit(e){
+  async function handleSubmit(customerName,mobile,email,msg){
     console.log("handle submit called")
-
-
-
-    //let responce = await fetch('http://18.117.91.127/api/method/pastech_app.api.test', {
-   // let responce = await fetch('http://18.117.91.127/api/method/pastech_app.api.create_customer_enquiry?name=test&phone=123&email=test@gmail.com&data=ererere', {
-    //let responce = await fetch('http://localhost:8001/api/method/uttamenergy.api.create_customer_enquiry?name=test&phone=123&email=test@gmail.com&data=ererere', {
-//     method: 'GET',
-//     mode: 'cors',
-//     headers: {
-//         'Authorization': 'token api_key:cbbfeb49897d3c5',
-//         'Accept': 'application/json',
-//         //'Content-Type' : 'application/x-www-form-urlencoded',
-//         'Content-Type': 'application/json;charset=utf-8',
-//         'Access-Control-Allow-Origin' : '*',
-    
-//     }
-//     }
-//    )
-
-    // let data = await responce.json();
-    // console.log("is date...")
-    // console.log(data);
-
-
-
-    fetch('http://139.59.89.95/api/method/pastech_app.api.create_customer_enquiry?name=ujjwal&phone=9511807518&email=ujjwal@gmail.com&data=please call me', {
+    var url = `http://139.59.89.95/api/method/pastech_app.api.create_customer_enquiry?name=${customerName}&phone=${mobile}&email=${email}&data=${msg}`
+    fetch(url, {
         headers: {
-            'Authorization': 'token 922bf15398fb62d:eed30f308e813e0'
+            'Authorization': 'token 1c8cb14f765a8d5:761130bd34e4504',
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
         }
     })
     .then(r => r.json())
     .then(r => {
         console.log(r);
-    })
+        if(r.message){
 
-    // let response = await fetch('http://18.117.91.127/api/method/pastech_app.api.get_all_branbds', {
-    // method: 'GET',
-    // headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json',
-    // },
-    // body: JSON.stringify({
-    //     name: 'ujjwal',
-    //     email: 'yourOtherValue',
-    // })
-    //})
-    // .then( resp => {
-    //     console.log("resp Is: ",resp.json())
-    // })
-    //let response = await fetch('someurltoAJsonFile.json');
-//   let data = await response.json();
-//   console.log(data);
+        }
+    })
     
 }
 export default function ContactUs(){
     const classes = useStyles();
+    const [customerName,setCustomerName] = useState()
+    const [email,setEmail] = useState()
+    const [mobile,setMobile] = useState()
+    const [msg,setMsg] = useState()
     return(
         
             <Box>
@@ -91,29 +58,31 @@ export default function ContactUs(){
                             <Box p={5}>
                                 <Typography variant="inherit" color="textSecondary">Please fill out the quick form and we will be in touch with lightening speed.</Typography>
                                 <Box paddingTop={2} display="flex" justifyContent="center">
-                                    <TextField id="name" label="Name" variant="outlined" fullWidth={true}/>
+                                    <TextField id="name" label="Name" variant="outlined" fullWidth={true} onChange={e => {setCustomerName(e.target.value)}}/>
                                 </Box>
                                 <Box paddingTop={2} display="flex" justifyContent="center">
                                     <Box marginRight={1}>
-                                        <TextField id="mob" label="Mobile" variant="outlined" fullWidth={true}/>
+                                        <TextField id="mob" label="Mobile" variant="outlined" fullWidth={true} onChange={e => {setMobile(e.target.value)}}/>
                                     </Box>
                                     <Box marginLeft={1}>
-                                        <TextField id="email" label="Email" variant="outlined" fullWidth={true}/>
+                                        <TextField id="email" label="Email" variant="outlined" fullWidth={true} onChange={e => {setEmail(e.target.value)}}/>
                                     </Box>
                                 </Box>
                                 <Box marginTop={2}>
                                     <TextField
                                         id="outlined-multiline-static"
                                         label="Description..."
+                                        value = {msg}
                                         multiline
                                         rows={4}
                                         variant="outlined"
                                         fullWidth={true}
+                                        onChange={e => {setMsg(e.target.value)}}
                                     />
                                 </Box>
                                 <Box marginTop={2}>
                                 <Button variant="contained" 
-                                    onClick={e => handleSubmit(e)}
+                                    onClick={e => handleSubmit(customerName,mobile,email,msg)}
                                     style={{background:"#42c8b7", 
                                     color:"white",
                                     fullWidth:true,

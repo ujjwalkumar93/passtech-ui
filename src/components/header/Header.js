@@ -83,6 +83,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PrimarySearchAppBar() {
   const history = useHistory();
+  console.log("history: ",history)
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -132,13 +133,13 @@ export default function PrimarySearchAppBar() {
   );
 
   return (
-    <div className={classes.grow}>
+    <div className={classes.grow}>  
       <AppBar position="static" style={{ background: '#7cc1ac' }}>
         <Toolbar>
           <Typography 
             className={classes.title} 
             variant="h6" 
-            noWrap onClick={e => history.push("/home")}>
+            noWrap onClick={e => history.replace("/")}>
             PassTech
           </Typography>
           <div className={classes.search}>
@@ -152,7 +153,7 @@ export default function PrimarySearchAppBar() {
               aria-controls={menuId}
               aria-haspopup="true"
               //onClick={handleProfileMenuOpen}
-              onClick={ () => {history.push("profile")}}
+              onClick={ () => {history.push("./../profile")}}
               color="inherit"
             >
               <AccountCircle />
@@ -164,7 +165,7 @@ export default function PrimarySearchAppBar() {
               aria-label="account of current user"
               aria-controls={menuId}
               aria-haspopup="true"
-              onClick={ () => {history.push("profile")}}
+              onClick={ () => {history.replace("/profile")}}
               color="inherit"
             >
               <AccountCircle />
