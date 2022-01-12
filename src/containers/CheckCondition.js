@@ -20,6 +20,7 @@ export default function CheckCondition(props){
     console.log(">><><><<jhhgfdsghj")
     console.log("props.match.param: ",props)
 
+
 useEffect(() => {
     async function phoneCondition(){
       let url = `http://139.59.89.95/api/method/pastech_app.api.get_primary_condition_check?mobile=${props.match.params.model}`
@@ -31,7 +32,6 @@ useEffect(() => {
       }})
       let data = await response.json();
       setQueList(data.message)
-
     }
     phoneCondition()
   },[])

@@ -13,7 +13,7 @@ import { useHistory } from "react-router-dom";
 export default function Checkout(props){
   const [expanded, setExpanded] = React.useState(false);
   let history = useHistory()
-  
+  console.log("Props data is: ",props.location.state.dep)
 
   const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);

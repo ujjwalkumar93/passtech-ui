@@ -33,7 +33,7 @@ const PhoneInfo = (props) => {
   const [showExpPrice, setShowExpPrice] = useState(false);
   const[phoneDetails, setPhoneDetails] = useState()
   const variants = [{name:"4GB/64GB", color:"#ffa733"},{name:"6GB/128GB", color:"#8bc34a"},{name:"6GB/128GB", color:"#8bc34a"}]
-console.log("Props data is: ",props.match.params)
+  console.log("Props data is: ",props.match.params)
   let history = useHistory();
   useEffect(() => {
     async function phoneInfo(){
@@ -87,7 +87,7 @@ console.log("Props data is: ",props.match.params)
               marginBottom : 18,
             }}
             onClick= {() => {
-              history.push(`/secondry_condition/${phoneDetails.name}`,{data: phoneDetails})
+              history.push(`/primary_condition/${phoneDetails.name}`,{data: phoneDetails})
               //history.push(`/secondry_condition/${item.name`)
             }}
             >Get Exact Value</Button>

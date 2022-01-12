@@ -66,7 +66,7 @@
 //         ]
 // )
 
-//     const[ansList,setAnsLinst] =useState([])
+//     const[ansList,setAnsList] =useState([])
 
 //         const handleCheck = (e) => {
 //             let objIndex = queList.findIndex((obj => obj.id == e.id));
@@ -98,7 +98,7 @@
 //                 }
 
 //             })
-//             setAnsLinst([...a])
+//             setAnsList([...a])
 
 //         },[queList])
 //     return(
@@ -216,6 +216,7 @@ export default function CheckCondition(props){
     let history = useHistory()
     const classes = useStyles();
     const[queList,setQueList] =useState ([]);
+    const[valuationMapper,setValuationMapper] = useState([])
 
 useEffect(() => {
     async function phoneCondition(){
@@ -229,18 +230,17 @@ useEffect(() => {
       }})
       let data = await response.json();
       setQueList(data.message)
+      console.log(">>>>>>>>>>>>>>>> data is:",data)
 
     }
     phoneCondition()
   },[])
 
-    const[ansList,setAnsLinst] =useState([])
+    const[ansList,setAnsList] =useState([])
 
         const handleCheck = (e) => {
             let objIndex = queList.findIndex((obj => obj.name == e.id));
             console.log("queList is: ",queList)
-            console.log("e is: ",e)
-            console.log("objIndex is: ",objIndex)
             if(e.key === "y"){
                 if(!queList[objIndex].n){
                     queList[objIndex].y = e.val
@@ -256,20 +256,24 @@ useEffect(() => {
         }
         useEffect(() => {
             let a = []
+            let v = []
             queList.map(q => {
                 if(q.y){
-                    console.log(q.yes)
                     a.push(q.yes)
                 }
                 if(q.n){
-                    console.log(q.no)
                     a.push(q.no)
+                    v.push(parseFloat(q.valuation))
                 }
 
             })
-            setAnsLinst([...a])
+            setAnsList([...a])
+            setValuationMapper([...v])
 
         },[queList])
+        useEffect(() => {
+            console.log("valuationMapper is: ", valuationMapper)
+        },[valuationMapper])
     return(
             <Grid container >
                 <Grid item lg={8} xs={12}>
@@ -323,9 +327,7 @@ useEffect(() => {
                                             alert("Please answer all the question")
                                         }
                                         else {
-                                            // history.push('/checkout')
-                                            // history.push('/primary_condition')
-                                            history.push(`/checkout`,{data: props.match.params.model})
+                                            history.push(`/checkout`,{dep:valuationMapper})
                                         }
                                         
                                     }}

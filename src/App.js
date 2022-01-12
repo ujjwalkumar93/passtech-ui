@@ -36,7 +36,7 @@ function App() {
               <Route path = '/term_and_condition' component={TermAndCondition}/>
               <Route path = '/privacy_policy' component={PrivacyPolicy}/>
               <Route path = '/phone_info/:model' component={PhoneInfo}/>
-              <Route path = '/secondry_condition/:model' component={CheckCondition}/>
+              {/* <Route path = '/secondry_condition/:model' component={CheckCondition}/> */}
               <Route path='/primary_condition/:model' component={PrimaryCheckCondition}/>
               {/* <Route path = '/home' component={Home}/> */}
               <Route path='/auth' component={Signin}/>
