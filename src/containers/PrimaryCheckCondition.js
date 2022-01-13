@@ -212,11 +212,12 @@ const useStyles = makeStyles((theme) => ({
   }));
   
 export default function CheckCondition(props){
-    console.log("props: >>> ",props)
     let history = useHistory()
     const classes = useStyles();
     const[queList,setQueList] =useState ([]);
     const[valuationMapper,setValuationMapper] = useState([])
+
+    console.log("props.location.state:>>>>>>: ",props.location.state)
 
 useEffect(() => {
     async function phoneCondition(){
@@ -230,7 +231,6 @@ useEffect(() => {
       }})
       let data = await response.json();
       setQueList(data.message)
-      console.log(">>>>>>>>>>>>>>>> data is:",data)
 
     }
     phoneCondition()
@@ -328,6 +328,7 @@ useEffect(() => {
                                         }
                                         else {
                                             history.push(`/checkout`,{dep:valuationMapper})
+                                            //history.push(`/secondry_condition/${props.match.params.model}`)
                                         }
                                         
                                     }}

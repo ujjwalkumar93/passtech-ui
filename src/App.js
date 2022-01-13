@@ -9,7 +9,7 @@ import AllBrands from './containers/AllBrands.js'
 import AboutUs from './containers/AboutUs.js'
 import ContactUs from './containers/ContactUs.js'
 import PhoneInfo from './containers/PhoneInfo.js'
-import CheckCondition from './containers/CheckCondition'
+import SecondryCheckCondition from './containers/SecondryCheckCondition'
 import PrimaryCheckCondition from './containers/PrimaryCheckCondition'
 import Checkout from './containers/Checkout'
 // import test from './containers/test.js'
@@ -36,7 +36,7 @@ function App() {
               <Route path = '/term_and_condition' component={TermAndCondition}/>
               <Route path = '/privacy_policy' component={PrivacyPolicy}/>
               <Route path = '/phone_info/:model' component={PhoneInfo}/>
-              {/* <Route path = '/secondry_condition/:model' component={CheckCondition}/> */}
+              <Route path = '/secondry_condition/:model' component={SecondryCheckCondition}/>
               <Route path='/primary_condition/:model' component={PrimaryCheckCondition}/>
               {/* <Route path = '/home' component={Home}/> */}
               <Route path='/auth' component={Signin}/>

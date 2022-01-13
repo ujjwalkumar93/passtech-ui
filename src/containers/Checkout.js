@@ -30,7 +30,7 @@ export default function Checkout(props){
                 </Box>
                         <Box mx={4} my={4}>
                             <Typography variant="h5"><b>Apple iPhone 11 Pro Max (4 GB/64 GB)</b></Typography>
-                            <Typography variant="h6">Selling price</Typography>
+                            <Typography variant="h6">Buying price</Typography>
                             <Typography variant="h4" style={{color:"#c7493a"}}>₹800</Typography>
                             <Box flexGrow={1} flexWrap="wrap" boxShadow={1} paddingX={4} paddingY={3} borderRadius={8}>
                                     <Typography variant="subtitle1">The value is based on the condition of the product mentioned by you.</Typography>

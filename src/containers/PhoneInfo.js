@@ -87,8 +87,8 @@ const PhoneInfo = (props) => {
               marginBottom : 18,
             }}
             onClick= {() => {
-              history.push(`/primary_condition/${phoneDetails.name}`,{data: phoneDetails})
-              //history.push(`/secondry_condition/${item.name`)
+              //history.push(`/primary_condition/${phoneDetails.name}`,{data: phoneDetails})
+              history.push(`/secondry_condition/${phoneDetails.name}`,{data:{model:phoneDetails.name,ram:phoneDetails.ram,maximum_price:phoneDetails.maximum_price}})
             }}
             >Get Exact Value</Button>
           </Box>
