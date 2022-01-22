@@ -88,7 +88,8 @@ const PhoneInfo = (props) => {
             }}
             onClick= {() => {
               //history.push(`/primary_condition/${phoneDetails.name}`,{data: phoneDetails})
-              history.push(`/secondry_condition/${phoneDetails.name}`,{data:{model:phoneDetails.name,ram:phoneDetails.ram,maximum_price:phoneDetails.maximum_price}})
+              
+              history.push(`/secondry_condition/${phoneDetails.name}`,{data:{model:phoneDetails.name,ram:phoneDetails.ram,maximum_price:phoneDetails.maximum_price,img_src: `http://139.59.89.95/${phoneDetails.phone_image}`}})
             }}
             >Get Exact Value</Button>
           </Box>

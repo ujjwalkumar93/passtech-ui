@@ -1,4 +1,3 @@
-
 import {React,useState,useEffect} from 'react';
 import { Typography,Box,Grid,Checkbox,FormControlLabel,Button } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
@@ -19,13 +18,13 @@ export default function CheckCondition(props){
     const classes = useStyles();
     const[queList,setQueList] =useState ([]);
     const[valuationMapper,setValuationMapper] = useState([])
+    console.log(">><><><<jhhgfdsghj",props.location.state)
+    console.log("props.match.param: ",props)
 
-    console.log("props.location.state:>>>>>>: ",props.location.state)
 
 useEffect(() => {
     async function phoneCondition(){
-      let url = `http://139.59.89.95/api/method/pastech_app.api.get_primary_condition_check?mobile=${props.match.params.model}`
-      console.log("url is: ",url)
+      let url = `http://139.59.89.95/api/method/pastech_app.api.get_secondary_condition_check?mobile=${props.match.params.model}`
       let response = await fetch(url, {
       method: 'GET',
       headers: {
@@ -34,7 +33,6 @@ useEffect(() => {
       }})
       let data = await response.json();
       setQueList(data.message)
-
     }
     phoneCondition()
   },[])
@@ -43,12 +41,10 @@ useEffect(() => {
 
         const handleCheck = (e) => {
             let objIndex = queList.findIndex((obj => obj.name == e.id));
-            console.log("queList is: ",queList)
             if(e.key === "y"){
                 if(!queList[objIndex].n){
                     queList[objIndex].y = e.val
                 }
-                
             }
             if(e.key === "n"){
                 if(!queList[objIndex].y){
@@ -57,6 +53,22 @@ useEffect(() => {
             }
             setQueList([...queList])
         }
+        // useEffect(() => {
+        //     let a = []
+        //     queList.map(q => {
+        //         if(q.y){
+        //             console.log(q.yes)
+        //             a.push(q.yes)
+        //         }
+        //         if(q.n){
+        //             console.log(q.no)
+        //             a.push(q.no)
+        //         }
+
+        //     })
+        //     setAnsLinst([...a])
+
+        // },[queList])
         useEffect(() => {
             let a = []
             let v = []
@@ -72,15 +84,13 @@ useEffect(() => {
             })
             setAnsList([...a])
             setValuationMapper([...v])
-
             console.log("queList >>>>>>>>>>>>>>>>>>>>>>>: ",)
             console.log(queList)
-
         },[queList])
         useEffect(() => {
             console.log("valuationMapper is: ", valuationMapper)
-            console.log("ANSList is: ",ansList)
         },[valuationMapper])
+        
     return(
             <Grid container >
                 <Grid item lg={8} xs={12}>
@@ -135,11 +145,10 @@ useEffect(() => {
                                         }
                                         else {
                                             const data = {
-                                                mobileInfo:props.location.state.mobileInfo,
-                                                primaryCondition:queList,
-                                                secondryCondition:props.location.state.secondryCondition
+                                                mobileInfo: props.location.state.data,
+                                                secondryCondition:queList
                                             }
-                                            history.push(`/checkout`,data)
+                                            history.push(`/primary_condition/${props.match.params.model}`,data)
                                         }
                                         
                                     }}
@@ -150,13 +159,13 @@ useEffect(() => {
                     </Grid>
                 <Grid item lg={4} xs={12}>
                     <Box boxShadow={2} padding={8}>
-                        <Box display="flex" flexDirection="row" flexWrap="wrap">
-                            <img src = {props.location.state.mobileInfo.img_src} style={{
+                        <Box display="flex" flexDirection="row" flexWrap="no-wrap">
+                            <img src = {props.location.state.data.img_src} style={{
                             maxWidth:"50%"
                             }}/>
                             <Box padding={3}>
-                            <Typography  variant="h6">{props.location.state.mobileInfo.model}</Typography>
-                            <Typography color="secondary">{props.location.state.mobileInfo.ram}GB</Typography>
+                            <Typography  >{props.location.state.data.model}</Typography>
+                            <Typography color="secondary">{props.location.state.data.ram} GB</Typography>
                             </Box>
                         </Box>
                     </Box>

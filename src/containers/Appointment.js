@@ -4,10 +4,11 @@ import PriceTable from '../components/PriceTable/PriceTable.js';
 import SetAddress from '../components/Address/SetAddress.js';
 import BankDetails from '../components/BankDetails/BankDetails.js';
 import GetAddress from '../components/Address/GetAddress.js';
-import { Box,Typography,Button,Grid,TextField,Chip} from '@material-ui/core';
+import {CardContent,Card,Radio,Box,Typography,Button,Grid,TextField,Chip} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-
-
+import { useEffect } from 'react';
+import Alert from '@mui/material/Alert';
+import { useHistory } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
     container: {
       display: 'flex',
@@ -20,17 +21,117 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 export default function Appointment(props){
+    let history = useHistory()
+    const[showError,setShowError] = useState(false)
     const today = new Date().toISOString().split('T')[0];
     const[add, setAdd] = useState(false)
     const[showSlot, setShowSlot] = useState(false)
     const[selectedSlot, setSelectedShowSlot] = useState(null)
+    const[addressList,setAddressList] = useState([])
+    //const[selectedAddress,setSelectedAddress] = useState([])
     const classes = useStyles();
-    var slotList = [
-        {color:"#ffffff", time:"10Am-12AM"},
-        {color:"#ffffff", time:"12Am-02AM"},
-        {color:"#ffffff", time:"02Am-04AM"},
-        {color:"#ffffff", time:"04Am-06AM"}
-    ]
+    const[slotList,setSlotList] = useState([])
+
+    function get_user_address(usr) {
+        var url = `http://139.59.89.95/api/method/pastech_app.api.get_address?email=pathakujjwal93@gmail.com`
+        fetch(url, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
+        })
+        .then(r => r.json())
+        .then(r => {
+            if(r.message){
+              setAddressList(r.message)
+            }
+        })
+      }
+      function get_slot(){
+        var url = `http://139.59.89.95/api/method/pastech_app.api.get_slot`
+        fetch(url, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
+        })
+        .then(r => r.json())
+        .then(r => {
+            if(r.message){
+                setSlotList(r.message)
+            }
+        })
+      }
+      useEffect(() => {
+        get_slot()
+        get_user_address("usr")
+        console.log("props are: ",props)
+      },[])
+      function handleAddress(name){
+          let data = []
+        addressList.map(i => {
+            let obj = i
+            if(i.name === name){
+                obj.enable = !obj.enable
+            }
+            if(i.name !== name){
+                obj.enable = false
+            }
+            data.push(obj)
+            setAddressList([...data])
+        })
+
+      }
+      function handleAppointment(){
+          console.log("data is: ",props.location.state.mobileData)
+          let user = "pathakujjwal93@gmail.com"
+          let mobile = encodeURIComponent(props.location.state.mobileData.mobileInfo.model)
+          let doa = "2023-01-01"
+          let slot = "10Am-12AM"
+          let address_id = "1674996bfb"
+          let primary_condition = encodeURIComponent(JSON.stringify(props.location.state.mobileData.primaryCondition))
+          let secondary_condition = encodeURIComponent(JSON.stringify(props.location.state.mobileData.secondryCondition))
+          let estimated_price = props.location.state.data
+          let ts = Date.now()
+
+
+        var url = `http://139.59.89.95/api/method/pastech_app.api.create_appointment?user=${user}&mobile=${mobile}&doa=${doa}&slot=${slot}&primary_condition=${primary_condition}&secondary_condition=${secondary_condition}&address_id=${address_id}&estimated_price=${estimated_price}&time_stamp=${ts}`
+        //var url = `http://139.59.89.95/api/method/pastech_app.api.create_appointment`
+        //var url = `localhost:8001/api/method/pastech_app.api.create_appointment?user=${user}&mobile=${mobile}&doa=${doa}&slot=${slot}&primary_condition=${primary_condition}&secondary_condition=${secondary_condition}&address_id=${address_id}&estimated_price=${estimated_price}`
+          let payload = {
+            user:user,
+            mobile:mobile,
+            doa:doa,
+            slot:slot,
+            primary_condition:primary_condition,
+            secondary_condition:secondary_condition,
+            address_id:address_id,
+            estimated_price:estimated_price
+          }
+          console.log(url)
+          fetch(url, {
+            method: 'POST',
+              headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json',
+              },
+              //body: JSON.stringify(payload)
+          })
+          .then(r => r.json())
+          .then(r => {
+              if(r.message){
+                console.log("resp is: ",r.message)
+                //setAddressList(r.message)
+                history.push(
+                    "/confirmation",
+                    {booking:r.message}
+                )
+              } else {
+                  setShowError(true)
+              }
+          })
+
+      }
     return(
        <Box>
             <Box>
@@ -94,7 +195,37 @@ export default function Appointment(props){
                                 </Box>
                             </Box>
                             <Box>
-                                <GetAddress/>
+                                {/* <GetAddress/> */}
+
+                                {
+                                    addressList.map(i => {
+                                        return (
+                                          <Card style={{maxWidth:300 ,marginTop:8}}
+                                            onClick={() => {handleAddress(i.name)}}
+                                          >
+                                          <CardContent>
+                                          <Box display="flex">
+                                            <Box>
+                                            <Radio
+                                              onChange = {e => console.log(">>>>>>>>>>>>>>")}
+                                              checked = {i.enable}
+                                            />
+                                            </Box>
+                                            <Box>
+                                            <Typography>{i.full_name}</Typography>
+                                            <Typography variant="subtitle2">{i.mobile}</Typography>
+                                            <Typography variant="subtitle2">{i.city}</Typography>
+                                            <Typography variant="subtitle2">{i.postal_code}</Typography>
+                                            </Box>
+                                    
+                                          </Box>
+                                          </CardContent>
+                                        </Card>
+                                        )
+                                    })
+                                }
+
+
                             </Box>
                             <Box>
                                 {
@@ -106,7 +237,7 @@ export default function Appointment(props){
                 <Grid item lg={3} xs={12}>
                     <Box mx={8} my={4}>
                         <Typography variant="h6"><b>Price Summary</b></Typography>
-                        <PriceTable/>
+                        <PriceTable data={props.location.state.data}/>
                     </Box>
                     <Box mx={8} my={4}>
                        <BankDetails/>
@@ -114,11 +245,14 @@ export default function Appointment(props){
                 </Grid>
             </Grid>
         </Box>
+        {
+            showError === true ? (<Alert severity="error">Please fill all the value...</Alert>) : null
+        }
         <Grid container justify = "center">
                 <Button 
                     variant="contained" 
                     color="green"
-                    onClick={() => {alert("Appointment Booked")}}
+                    onClick={() => {handleAppointment()}}
                     style={{margin:"24px", float:"center"}}
                     >Book Appointment
                 </Button>

@@ -24,17 +24,17 @@ const useStyles = makeStyles({
       height: 140,
     },
   });
-async function allBrands(){
-    let response = await fetch('http://139.59.89.95/api/method/pastech_app.api.get_all_brands', {
-    method: 'GET',
-    headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-    }})
-    //let response = await fetch('someurltoAJsonFile.json');
-    let data = await response.json();
-    console.log(data);
-}
+// async function allBrands(){
+//     let response = await fetch('http://139.59.89.95/api/method/pastech_app.api.get_all_brands', {
+//     method: 'GET',
+//     headers: {
+//         'Accept': 'application/json',
+//         'Content-Type': 'application/json',
+//     }})
+//     //let response = await fetch('someurltoAJsonFile.json');
+//     let data = await response.json();
+//     console.log(data);
+// }
 export default  function Home(){
     const [brand, setBrand] = useState([])
     let history = useHistory();
@@ -44,7 +44,6 @@ export default  function Home(){
 
     useEffect(() => {
         async function allBrands(){
-            console.log("<>><><<>")
             let response = await fetch('http://139.59.89.95/api/method/pastech_app.api.get_all_brands', {
             method: 'GET',
             headers: {

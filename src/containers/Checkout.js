@@ -13,7 +13,20 @@ import { useHistory } from "react-router-dom";
 export default function Checkout(props){
   const [expanded, setExpanded] = React.useState(false);
   let history = useHistory()
-  console.log("Props data is: ",props.location.state.dep)
+  console.log("Props data is: ",props.location.state)
+
+  const calculatePrice = () => {
+      let totalDepritiation = 0
+      props.location.state.primaryCondition.map(i=> {
+          if(i.n){
+            totalDepritiation+=parseFloat(i.valuation)
+          }
+      })
+      let estimated_price = 0
+      console.log("totalDepritiation: ",totalDepritiation)
+      estimated_price = parseFloat(props.location.state.mobileInfo.maximum_price) - totalDepritiation/100*parseFloat(props.location.state.mobileInfo.maximum_price)
+      return estimated_price
+  }
 
   const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
@@ -23,15 +36,15 @@ export default function Checkout(props){
             <Grid item lg={8} xs={12}>
                 <Box flexGrow={3} mx={8} my={8} boxShadow={1} borderRadius={16} display="flex">
                     <Box my={4} flexWrap="wrap" flexDirection="row-reverse" display="flex" marginRight={5}>
-                        <img src = "https://images-na.ssl-images-amazon.com/images/I/71-Su4Wr0HL._SY741_.jpg" style={{
+                        <img src = {props.location.state.mobileInfo.img_src} style={{
                             maxWidth:"50%",
                             height:"auto",
                         }}/>
                 </Box>
                         <Box mx={4} my={4}>
-                            <Typography variant="h5"><b>Apple iPhone 11 Pro Max (4 GB/64 GB)</b></Typography>
+                            <Typography variant="h5"><b>{props.location.state.mobileInfo.model}</b></Typography>
                             <Typography variant="h6">Buying price</Typography>
-                            <Typography variant="h4" style={{color:"#c7493a"}}>₹800</Typography>
+                            <Typography variant="h4" style={{color:"#c7493a"}}>₹{calculatePrice()}</Typography>
                             <Box flexGrow={1} flexWrap="wrap" boxShadow={1} paddingX={4} paddingY={3} borderRadius={8}>
                                     <Typography variant="subtitle1">The value is based on the condition of the product mentioned by you.</Typography>
                                     <Typography variant="subtitle1"><span style={{color:"#c7493a"}}>Click Here</span> to See your Device report</Typography>
@@ -56,13 +69,17 @@ export default function Checkout(props){
                 <Box boxShadow={1} mx={8} borderRadius={20} display="flex" my={8} display="flex" justifyContent="center" flexDirection="column" padding={8}>
                     <Box mx={2} my={4} borderBottom={1} flexGrow={1} borderColor="secondary.main" >
                         <Typography variant="h6"><b>Price Summary</b></Typography>
-                        <PriceTable/>
+                        <PriceTable data={calculatePrice()}/>
                     </Box>
                     <Button 
                         variant="contained" 
                         color="secondary"
                         onClick={() => {
-                            history.push("/appointment")
+                            let d = {
+                                data: calculatePrice(),
+                                mobileData:props.location.state
+                            }
+                            history.push("/appointment",d)
                         }}
                         >Enter Pickup Details</Button>
                 </Box>

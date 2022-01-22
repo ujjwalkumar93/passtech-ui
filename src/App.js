@@ -7,6 +7,7 @@ import Signin from './components/signinsignup/Signin.js'
 import Home from './containers/Home.js'
 import AllBrands from './containers/AllBrands.js'
 import AboutUs from './containers/AboutUs.js'
+import BookingConfirmation from './containers/BookingConfirmation.js'
 import ContactUs from './containers/ContactUs.js'
 import PhoneInfo from './containers/PhoneInfo.js'
 import SecondryCheckCondition from './containers/SecondryCheckCondition'
@@ -43,6 +44,8 @@ function App() {
               <Route path='/checkout' component={Checkout}/>
               <Route path='/appointment' component={Appointment}/>
               <Route path='/profile' component={Profile}/>
+              
+              <Route path='/confirmation' component={BookingConfirmation}/>
               <Route path = '/' component={Home}/>
             </Switch>
           <Footer/>
