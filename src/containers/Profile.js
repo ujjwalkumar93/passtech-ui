@@ -5,7 +5,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import TextField from '@mui/material/TextField';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SaveIcon from '@material-ui/icons/Save';
 import GetAddress from '../components/Address/GetAddress.js';
 import SetAddress from '../components/Address/SetAddress.js';
@@ -25,7 +25,7 @@ const style = {
     bgcolor: 'background.paper',
   };
 
-function Greeting(){
+function Greeting(props){
     return(
         <Box display="flex" boxShadow={1}>
             <Box>
@@ -36,7 +36,7 @@ function Greeting(){
                     />
             </Box>
             <Box margin={1}>
-                <Typography>Hello Ujjwal</Typography>
+                <Typography>Hello {props.fullName}</Typography>
             </Box>
         </Box>
     )
@@ -52,7 +52,7 @@ function ViewAndEditProfile(){
                         id="standard-name" 
                         disabled={!allowModify}
                         label="Full Name" 
-                        defaultValue="Ujjwal"
+                        defaultValue={localStorage.getItem("email")}
                         required = {true}
                         variant = "filled"
                         InputLabelProps={{
@@ -68,7 +68,7 @@ function ViewAndEditProfile(){
                         disabled={!allowModify}
                         id="standard-name" 
                         label="Email" 
-                        defaultValue="ukumar@dexciss.com"
+                        defaultValue={localStorage.getItem("email")}
                         required = {true}
                         variant = "filled"
                         style={{
@@ -212,34 +212,55 @@ function SalesHistory(){
         
       ];
     let totalOrder = data.length 
+    
+    useEffect(()=> {
+        //get_full_name()
+        let user = localStorage.getItem("email")
+        if(user === null){
+            return true
+        }
+        var url = `http://139.59.89.95/api/method/pastech_app.api.get_order_history?user=${user}`
+        fetch(url, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
+        })
+        .then(r => r.json())
+        .then(r => {
+            if(r.message){
+                setData(r.message)
+            }
+        })
+    },[])
     return(
         <Box mr={4}>
             {
-                totalOrder == 1 ? (
+                totalOrder == 0 ? (
                     <Typography>No History Found</Typography>
                 ): (
                     <Box>
-                        <Table sx={{ maxWidth: 400 }} aria-label="simple table">
+                        <Table sx={{ maxWidth: 800 }} aria-label="simple table">
                             <TableHead>
                             <TableRow>
-                                <TableCell>Date</TableCell>
+                                <TableCell align="right">Date</TableCell>
                                 <TableCell align="right">Mobile</TableCell>
                                 <TableCell align="right">Amount</TableCell>
-                                <TableCell align="right">Payment Type</TableCell>
+                                {/* <TableCell align="right">Payment Type</TableCell> */}
                             </TableRow>
                             </TableHead>
                             <TableBody>
-                            {rows.map((row) => (
+                            {data.map((row) => (
                                 <TableRow
                                 key={row.name}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
-                                <TableCell component="th" scope="row">
+                                {/* <TableCell component="th" scope="row">
                                     {row.name}
-                                </TableCell>
-                                <TableCell align="right">{row.calories}</TableCell>
-                                <TableCell align="right">{row.fat}</TableCell>
-                                <TableCell align="right">{row.carbs}</TableCell>
+                                </TableCell> */}
+                                <TableCell align="right">{row.doa}</TableCell>
+                                <TableCell align="right">{row.mobile}</TableCell>
+                                <TableCell align="right">{row.estimated_price}</TableCell>
                                 </TableRow>
                             ))}
                             </TableBody>
@@ -251,11 +272,42 @@ function SalesHistory(){
     )
 }
 export default function Profile() {
+    const[fullName,setName] = useState("Guest")
     const[component, setComponent] = useState("Profile Information")
+
+    function get_full_name(){
+        let user = localStorage.getItem("email")
+        if(user === null){
+            return true
+        }
+        console.log(">>>>>>>>>>>>>>>>>: ",localStorage.getItem("email"))
+        var url = `http://139.59.89.95/api/method/pastech_app.api.get_use_info?user=${user}`
+        fetch(url, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
+        })
+        .then(r => r.json())
+        .then(r => {
+        console.log("trying...............")
+            if(r.message){
+                setName(r.message)
+            }
+        })
+    }
+    useEffect(()=> {
+        get_full_name()
+    },[])
+function handleLogout(){
+    localStorage.removeItem("email");
+    window.location.reload();
+}
+
     return(
         <Box display="flex" flexDirection="row" flexGrow={5} mt={16} mb={19} ml={8} mr={8}>
             <Box flex={1}  padding={1} display="flex" flexDirection="column">
-                <Greeting/>
+                <Greeting fullName={fullName}/>
                 <Box marginTop={2} boxShadow={1}>
                     <List sx={style} component="nav" aria-label="mailbox folders">
                         <ListItem button onClick={e => setComponent("Profile Information")}>
@@ -273,7 +325,13 @@ export default function Profile() {
                         </ListItem>
                         <Divider light />
                         <ListItem button>
-                            <ListItemText primary="Logout" style={{color:"red"}}/>
+                            <ListItemText 
+                            primary="Logout" 
+                            style={{color:"red"}}
+                            onClick={()=>{
+                                handleLogout()
+                            }}
+                            />
                         </ListItem>
                     </List>
                 </Box>

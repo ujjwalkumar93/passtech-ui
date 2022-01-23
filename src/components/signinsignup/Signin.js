@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import GoogleLogin from 'react-google-login';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -18,7 +18,9 @@ import Signup from './Signup.js'
 import Fetch from 'react-fetch'
 import { BorderColor } from '@material-ui/icons';
 import Password from 'antd/lib/input/Password';
+import { useHistory } from "react-router-dom";
 function Copyright() {
+  let history = useHistory()
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
@@ -53,32 +55,58 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignupSignin() {
+export default function SignupSignin(props) {
+  let history = useHistory()
   const classes = useStyles();
-  const [showSignin, setshowSignin] = useState(true)
-  const [password, setPassword] = useState(null)
+  const[googleData,setGoogleData]=useState({})
+  const[email,setEmail]= useState(null)
   const auth_success = resp => {
     console.log("Success", resp)
-    var url = `http://139.59.89.95/api/method/pastech_app.api.handle_website_user?email=${resp.profileObj.email}&name=${resp.profileObj.name}&password=$34rt#T`
-    console.log("url is: ",url)
-    fetch(url, {
-        headers: {
-            'Authorization': 'token 1c8cb14f765a8d5:761130bd34e4504',
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        }
-    })
-    .then(r => r.json())
-    .then(r => {
-        console.log(r);
-        if(r.message){
-
-        }
-    })
+    let obj = {
+      googleId: resp.googleId,
+      email: resp.profileObj.email,
+      fullName: resp.profileObj.name
+    }
+    setEmail(resp.profileObj.email)
+    setGoogleData(obj)
+    console.log("document.referrer is: ",props)
+    history.push(props.location.state.prev_url)
   }
   const auth_fail = resp => {
     console.log("faill", resp)
   }
+  async function handle_auth(){
+    if(googleData.email !=undefined){
+      var url = `http://139.59.89.95/api/method/pastech_app.api.create_website_user?email=${googleData.email}&gmail_uid=${googleData.googleId}&full_name=${googleData.fullName}`
+      fetch(url, {
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+          }
+      })
+      .then(r => r.json())
+      .then(r => {
+          console.log(r);
+          if(r.message){
+            console.log("resp is: ",r.message)
+            if(r.message){
+              console.log("setted...........")
+            }
+            //setAddressList(r.message)
+          }
+      })
+
+
+    }
+  }
+  useEffect(() => {
+    handle_auth()
+    //console.log("document.referrer: ",)
+  },[googleData])
+
+  useEffect(() => {
+    localStorage.setItem("email", email)
+  },[email])
   return (
     <Container component="main" maxWidth="xs">
     <CssBaseline />

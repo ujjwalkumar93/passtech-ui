@@ -17,6 +17,7 @@ import Checkout from './containers/Checkout'
 import TermAndCondition from './containers/TermAndCondition.js'
 import PrivacyPolicy from './containers/TermAndCondition.js'
 import Appointment from './containers/Appointment.js'
+import Auth from './containers/Auth.js'
 import Profile from './containers/Profile.js'
 import {BrowserRouter as Router, Route, Switch,useHistory,create} from 'react-router-dom'
 import { createBrowserHistory } from 'history';
@@ -40,7 +41,7 @@ function App() {
               <Route path = '/secondry_condition/:model' component={SecondryCheckCondition}/>
               <Route path='/primary_condition/:model' component={PrimaryCheckCondition}/>
               {/* <Route path = '/home' component={Home}/> */}
-              <Route path='/auth' component={Signin}/>
+              <Route path='/signin' component={Signin}/>
               <Route path='/checkout' component={Checkout}/>
               <Route path='/appointment' component={Appointment}/>
               <Route path='/profile' component={Profile}/>

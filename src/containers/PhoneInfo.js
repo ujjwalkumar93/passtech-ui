@@ -88,8 +88,19 @@ const PhoneInfo = (props) => {
             }}
             onClick= {() => {
               //history.push(`/primary_condition/${phoneDetails.name}`,{data: phoneDetails})
+              let user = localStorage.getItem("email")
+              console.log("user is: ",user)
+              console.log("data type is: ",typeof(user))
+              if(user === 'null' || user == undefined){
+                  //setAuth(true)
+                  // console.log("<><><><>")
+                  history.push("/signin",{prev_url:`/phone_info/${phoneDetails.name}`})
+              }
+              else {
+                history.push(`/secondry_condition/${phoneDetails.name}`,{data:{model:phoneDetails.name,ram:phoneDetails.ram,maximum_price:phoneDetails.maximum_price,img_src: `http://139.59.89.95/${phoneDetails.phone_image}`}})
+                  //history.push("/appointment",d)
+              }
               
-              history.push(`/secondry_condition/${phoneDetails.name}`,{data:{model:phoneDetails.name,ram:phoneDetails.ram,maximum_price:phoneDetails.maximum_price,img_src: `http://139.59.89.95/${phoneDetails.phone_image}`}})
             }}
             >Get Exact Value</Button>
           </Box>

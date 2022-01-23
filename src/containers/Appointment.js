@@ -25,27 +25,38 @@ export default function Appointment(props){
     const[showError,setShowError] = useState(false)
     const today = new Date().toISOString().split('T')[0];
     const[add, setAdd] = useState(false)
+    const[appointmentDate,setAppointmentDate]= useState(null)
+    //const[slot,setSlot] = useState(null)
     const[showSlot, setShowSlot] = useState(false)
     const[selectedSlot, setSelectedShowSlot] = useState(null)
     const[addressList,setAddressList] = useState([])
+    const[addId,setAddId] = useState(null)
     //const[selectedAddress,setSelectedAddress] = useState([])
     const classes = useStyles();
     const[slotList,setSlotList] = useState([])
 
     function get_user_address(usr) {
-        var url = `http://139.59.89.95/api/method/pastech_app.api.get_address?email=pathakujjwal93@gmail.com`
-        fetch(url, {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            }
-        })
-        .then(r => r.json())
-        .then(r => {
-            if(r.message){
-              setAddressList(r.message)
-            }
-        })
+        let user = localStorage.getItem("email")
+        if(user === null){
+            //return true
+            history.push("/signin")
+        }
+        if(user !=null || user!=undefined){
+            console.log(">>>>>>>>>>>: ",user)
+            var url = `http://139.59.89.95/api/method/pastech_app.api.get_address?email=${user}`
+            fetch(url, {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(r => r.json())
+            .then(r => {
+                if(r.message){
+                setAddressList(r.message)
+                }
+            })
+        }
       }
       function get_slot(){
         var url = `http://139.59.89.95/api/method/pastech_app.api.get_slot`
@@ -82,56 +93,78 @@ export default function Appointment(props){
         })
 
       }
+      function handle_date(date){
+        setShowSlot(true)
+        setAppointmentDate(date)
+      }
       function handleAppointment(){
-          console.log("data is: ",props.location.state.mobileData)
-          let user = "pathakujjwal93@gmail.com"
-          let mobile = encodeURIComponent(props.location.state.mobileData.mobileInfo.model)
-          let doa = "2023-01-01"
-          let slot = "10Am-12AM"
-          let address_id = "1674996bfb"
-          let primary_condition = encodeURIComponent(JSON.stringify(props.location.state.mobileData.primaryCondition))
-          let secondary_condition = encodeURIComponent(JSON.stringify(props.location.state.mobileData.secondryCondition))
-          let estimated_price = props.location.state.data
-          let ts = Date.now()
 
+        let user = localStorage.getItem("email")
+        if(user === null){
+            return true
+        }
+        console.log("data is: ",props.location.state.mobileData)
+        //let user = user
+        let mobile = encodeURIComponent(props.location.state.mobileData.mobileInfo.model)
+        // let doa = appointmentDate
+        // let slot = "10Am-12AM"
+        // let address_id = "1674996bfb"
+        let primary_condition = encodeURIComponent(JSON.stringify(props.location.state.mobileData.primaryCondition))
+        let secondary_condition = encodeURIComponent(JSON.stringify(props.location.state.mobileData.secondryCondition))
+        let estimated_price = props.location.state.data
+        let ts = Date.now()
 
-        var url = `http://139.59.89.95/api/method/pastech_app.api.create_appointment?user=${user}&mobile=${mobile}&doa=${doa}&slot=${slot}&primary_condition=${primary_condition}&secondary_condition=${secondary_condition}&address_id=${address_id}&estimated_price=${estimated_price}&time_stamp=${ts}`
+        if(selectedSlot===null || appointmentDate === null){
+            setShowError(true)
+            return true
+        }
+        else {
+            console.log("appointmentDate is:",appointmentDate)
+            var url = `http://139.59.89.95/api/method/pastech_app.api.create_appointment?user=${user}&mobile=${mobile}&doa=${appointmentDate}&slot=${selectedSlot}&primary_condition=${primary_condition}&secondary_condition=${secondary_condition}&address_id=${addId}&estimated_price=${estimated_price}&time_stamp=${ts}`
         //var url = `http://139.59.89.95/api/method/pastech_app.api.create_appointment`
         //var url = `localhost:8001/api/method/pastech_app.api.create_appointment?user=${user}&mobile=${mobile}&doa=${doa}&slot=${slot}&primary_condition=${primary_condition}&secondary_condition=${secondary_condition}&address_id=${address_id}&estimated_price=${estimated_price}`
-          let payload = {
-            user:user,
-            mobile:mobile,
-            doa:doa,
-            slot:slot,
-            primary_condition:primary_condition,
-            secondary_condition:secondary_condition,
-            address_id:address_id,
-            estimated_price:estimated_price
-          }
-          console.log(url)
-          fetch(url, {
-            method: 'POST',
-              headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json',
-              },
-              //body: JSON.stringify(payload)
-          })
-          .then(r => r.json())
-          .then(r => {
-              if(r.message){
-                console.log("resp is: ",r.message)
-                //setAddressList(r.message)
-                history.push(
-                    "/confirmation",
-                    {booking:r.message}
-                )
-              } else {
-                  setShowError(true)
-              }
-          })
-
+            // let payload = {
+            //     user:user,
+            //     mobile:mobile,
+            //     doa:doa,
+            //     slot:slot,
+            //     primary_condition:primary_condition,
+            //     secondary_condition:secondary_condition,
+            //     address_id:address_id,
+            //     estimated_price:estimated_price
+            //   }
+              console.log(url)
+              fetch(url, {
+                method: 'POST',
+                  headers: {
+                      'Accept': 'application/json',
+                      'Content-Type': 'application/json',
+                  },
+                  //body: JSON.stringify(payload)
+              })
+              .then(r => r.json())
+              .then(r => {
+                  if(r.message){
+                    console.log("resp is: ",r.message)
+                    //setAddressList(r.message)
+                    history.push(
+                        "/confirmation",
+                        {booking:r.message}
+                    )
+                  } else {
+                      setShowError(true)
+                  }
+              })
+        }
+          
       }
+      useEffect(() => {
+        addressList.map(i => {
+            if(i.enable === true){
+                setAddId(i.name)
+            }
+        })
+      },[addressList])
     return(
        <Box>
             <Box>
@@ -144,9 +177,10 @@ export default function Appointment(props){
                         <form className={classes.container} noValidate>
                             <TextField
                                 id="date"
+                                // ref="app"
                                 label="Choose Appointment Date"
                                 type="date"
-                                onChange={e => {setShowSlot(true)}}
+                                onChange={e => handle_date(e.target.value)}
                                 className={classes.textField}
                                 inputProps={{
                                     min: today

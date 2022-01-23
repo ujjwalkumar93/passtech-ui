@@ -5,7 +5,11 @@ import { useState } from 'react';
 export default function GetAddress(props) {
   const[addressList,setAddressList] = useState([])
   function get_user_address(usr) {
-    var url = `http://139.59.89.95/api/method/pastech_app.api.get_address?email=pathakujjwal93@gmail.com`
+    let user = localStorage.getItem("email")
+        if(user === null){
+            return true
+        }
+    var url = `http://139.59.89.95/api/method/pastech_app.api.get_address?email=${user}`
     fetch(url, {
         headers: {
             'Accept': 'application/json',
@@ -29,7 +33,7 @@ export default function GetAddress(props) {
     //{
       addressList.map(i => {
           return (
-            <Card style={{maxWidth:300}}>
+            <Card style={{maxWidth:300, marginTop:8}}>
             <CardContent>
             <Box display="flex">
               <Box>
